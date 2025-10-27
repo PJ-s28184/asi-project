@@ -34,4 +34,4 @@ Thumbs.db
 
 # Kedro
 conf/local/*
-"!conf/local/.gitkeep"
+!conf/local/.gitkeep
