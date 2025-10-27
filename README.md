@@ -13,3 +13,22 @@ Projekt machine learningowy przewidujący czasy okrążeń w wyścigach FIA Worl
 ## Licencja
 
 Creative Commons Attribution-NonCommercial-ShareAlike 3.0 IGO (https://creativecommons.org/licenses/by-nc-sa/3.0/igo/).
+
+## Inicjalizacja projektu
+
+### 1. Sklonuj repozytorium
+```bash
+git clone https://github.com/PJ-s28184/asi-project.git
+cd asi-project
+```
+
+### 2. Utwórz środowisko
+```bash
+conda env create -f environment.yml
+conda activate asi-ml
+```
+
+### 3. Uruchom pipeline
+```bash
+kedro run
+```
