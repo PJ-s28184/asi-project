@@ -1,7 +1,3 @@
-"""
-Proste spięcie pipeline'u data_science.
-"""
-
 from kedro.pipeline import Pipeline, node
 
 from .nodes import clean, evaluate, split, train_baseline

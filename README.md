@@ -32,3 +32,51 @@ conda activate asi-ml
 ```bash
 kedro run
 ```
+
+Albo tylko pipeline data_science:
+```bash
+kedro run --pipeline data_science
+```
+
+## Struktura projektu
+
+```
+asi-project/
+├── conf/                    # Konfiguracja Kedro
+├── data/                    # Dane (nie w git)
+│   ├── 01_raw/             # Surowy CSV
+│   ├── 02_interim/         # Oczyszczone dane
+│   ├── 03_primary/         # Train/test split
+│   ├── 06_models/          # Wytrenowane modele
+│   └── 08_reporting/       # Metryki
+├── notebooks/              # Notebooki Jupyter
+│   ├── 01_eda.ipynb        # EDA i czyszczenie
+│   └── 02_baseline_ml.ipynb # Baseline model
+├── src/asi_project/        # Kod pipeline'u
+│   └── pipelines/data_science/
+│       ├── nodes.py        # Funkcje (clean, split, train, evaluate)
+│       └── pipeline.py     # Definicja pipeline'u
+└── tests/                  # Testy jednostkowe
+```
+
+## Pipeline Kedro
+
+Pipeline ma 4 kroki:
+1. **clean** - czyści dane (usuwa duplikaty, tworzy lap_time_seconds, pit_time_seconds, usuwa braki)
+2. **split** - dzieli na train/test (80/20)
+3. **train_baseline** - trenuje RandomForest i zapisuje model
+4. **evaluate** - oblicza metryki (MAE, RMSE, R², MAPE) i zapisuje je do CSV
+
+Wszystko jest w `src/asi_project/pipelines/data_science/`. Model zapisuje się do `data/06_models/model_baseline.pkl`, metryki do `data/08_reporting/metrics_baseline.csv`.
+
+## Metryki
+
+Model używa MAE jako głównej metryki (bo rozkład czasów okrążeń jest bardzo skośny), plus RMSE, R² i MAPE dla porównania.
+
+## W&B (Weights & Biases)
+
+Pipeline automatycznie loguje metryki do W&B jeśli masz skonfigurowane `wandb login`. Po uruchomieniu `kedro run` powinieneś zobaczyć nowy run w projekcie `asi-project` na dashboardzie W&B. Jeśli nie masz W&B, pipeline działa normalnie - po prostu pomija logowanie.
+
+## Testy
+
+Są podstawowe testy jednostkowe w `tests/`, uruchamia się przez `pytest -q`. Pre-commit hooks też są skonfigurowane (ruff, black) - można uruchomić przez `pre-commit run -a`.
