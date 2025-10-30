@@ -7,7 +7,15 @@ requires-python = ">=3.9"
 name = "asi_project"
 readme = "README.md"
 dynamic = [ "version",]
-dependencies = [ "ipython>=8.10", "jupyterlab>=3.0", "notebook", "kedro~=1.0.0",]
+dependencies = [
+  "ipython>=8.10",
+  "jupyterlab>=3.0",
+  "notebook",
+  "kedro~=1.0.0",
+  "kedro-datasets[pandas]",
+  "pandas",
+  "scikit-learn",
+]
 
 [project.scripts]
 asi-project = "asi_project.__main__:main"

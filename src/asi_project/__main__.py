@@ -1,7 +1,3 @@
-"""asi-project file for ensuring the package is executable
-as `asi-project` and `python -m asi_project`
-"""
-
 import sys
 from pathlib import Path
 from typing import Any
