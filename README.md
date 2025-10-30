@@ -72,11 +72,3 @@ Wszystko jest w `src/asi_project/pipelines/data_science/`. Model zapisuje się d
 ## Metryki
 
 Model używa MAE jako głównej metryki (bo rozkład czasów okrążeń jest bardzo skośny), plus RMSE, R² i MAPE dla porównania.
-
-## W&B (Weights & Biases)
-
-Pipeline automatycznie loguje metryki do W&B jeśli masz skonfigurowane `wandb login`. Po uruchomieniu `kedro run` powinieneś zobaczyć nowy run w projekcie `asi-project` na dashboardzie W&B. Jeśli nie masz W&B, pipeline działa normalnie - po prostu pomija logowanie.
-
-## Testy
-
-Są podstawowe testy jednostkowe w `tests/`, uruchamia się przez `pytest -q`. Pre-commit hooks też są skonfigurowane (ruff, black) - można uruchomić przez `pre-commit run -a`.
