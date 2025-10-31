@@ -28,7 +28,9 @@ def test_split_proportions_and_no_leakage():
         }
     )
 
-    X_train, X_test, y_train, y_test = split(df, target_column="lap_time_seconds", test_size=0.2, random_state=42)
+    X_train, X_test, y_train, y_test = split(
+        df, target_column="lap_time_seconds", test_size=0.2, random_state=42
+    )
 
     assert abs(len(X_test) - int(0.2 * n)) <= 1
     assert len(X_train) + len(X_test) == n

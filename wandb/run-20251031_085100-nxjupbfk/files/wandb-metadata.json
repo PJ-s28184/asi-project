@@ -1,0 +1,18 @@
+{
+  "os": "macOS-15.6-arm64-arm-64bit",
+  "python": "CPython 3.11.14",
+  "startedAt": "2025-10-31T07:51:00.800029Z",
+  "args": [
+    "run"
+  ],
+  "program": "/opt/homebrew/Caskroom/miniconda/base/envs/asi-ml/bin/kedro",
+  "git": {
+    "remote": "https://github.com/PJ-s28184/asi-project.git",
+    "commit": "ae4597d0dafcea7db38e93cb317781dc7023c4e8"
+  },
+  "email": "kacper.ziebacz01@gmail.com",
+  "root": "/Users/kacperziebacz/Desktop/asi-project",
+  "host": "172.23.72.107.wi-fi.pjwstk.edu.pl",
+  "executable": "/opt/homebrew/Caskroom/miniconda/base/envs/asi-ml/bin/python",
+  "writerId": "0230b4j9i5y37dn6udlx80bl21u2icxr"
+}
