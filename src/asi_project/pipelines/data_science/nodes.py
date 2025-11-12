@@ -59,8 +59,38 @@ def split(
     if target_column not in df.columns:
         raise ValueError(f"target_column '{target_column}' not in dataframe")
 
-    y = df[target_column]
-    X = df.drop(columns=[target_column]).select_dtypes(include=["number"])
+    df_features = df.copy()
+    
+    if 'driver_number' in df_features.columns and 'lap_number' in df_features.columns:
+        df_features = df_features.sort_values(['driver_number', 'lap_number'])
+        
+        for col in ['s1', 's2', 's3', 'kph', 'top_speed']:
+            if col in df_features.columns:
+                df_features[f'{col}_prev'] = df_features.groupby('driver_number')[col].shift(1)
+                df_features[f'{col}_avg_3'] = df_features.groupby('driver_number')[col].shift(1).rolling(3, min_periods=1).mean().reset_index(level=0, drop=True)
+        
+        if target_column in df_features.columns:
+            df_features['lap_time_prev'] = df_features.groupby('driver_number')[target_column].shift(1)
+            df_features['lap_time_avg_3'] = df_features.groupby('driver_number')[target_column].shift(1).rolling(3, min_periods=1).mean().reset_index(level=0, drop=True)
+    
+    leakage_columns = [
+        's1', 's2', 's3',
+        's1_improvement', 's2_improvement', 's3_improvement',
+        'lap_time_ms', 'lap_time_s', 'lap_time',
+        'elapsed_ms', 'elapsed_s', 'elapsed',
+        'interval_ms', 'interval', 'gap',
+        'class_interval', 'class_gap',
+        'position', 'class_position'
+    ]
+    
+    y = df_features[target_column]
+    
+    cols_to_drop = [target_column] + [col for col in leakage_columns if col in df_features.columns and col != target_column]
+    X = df_features.drop(columns=cols_to_drop).select_dtypes(include=["number"])
+    
+    X = X.dropna()
+    y = y[X.index]
+    
     if X.shape[1] == 0:
         X = pd.DataFrame({"bias": 1.0}, index=df.index)
 
@@ -189,7 +219,18 @@ def train_autogluon(
     )
     train_time_s = time.time() - start_time
 
-    wandb.log({"train_time_s": train_time_s})
+    try:
+        leaderboard = predictor.leaderboard(silent=True)
+        if leaderboard is not None and len(leaderboard) > 0:
+            best_score = leaderboard.iloc[0]["score_val"]
+            validation_rmse = float(abs(best_score)) if not pd.isna(best_score) else 0.0
+        else:
+            validation_rmse = 0.0
+    except Exception:
+        validation_rmse = 0.0
+
+    wandb.log({"validation_rmse": validation_rmse, "train_time_s": train_time_s})
+    wandb.finish()
 
     return predictor
 
@@ -215,7 +256,6 @@ def evaluate_autogluon(
     mape = float(np.mean(np.abs((y_test - y_pred) / (y_test + 1e-10))) * 100)
 
     metrics = {
-        "roc_auc": r2,
         "mae": mae,
         "mse": mse,
         "rmse": rmse,
@@ -224,7 +264,7 @@ def evaluate_autogluon(
     }
 
     try:
-        wandb.init(project="asi-project", resume="allow", reinit=False)
+        wandb.init(project="asi-project", job_type="ag-evaluate", reinit=True)
         wandb.log(metrics)
 
         try:
@@ -234,13 +274,16 @@ def evaluate_autogluon(
 
                 plt.figure(figsize=(10, 6))
                 feature_importance.head(20).plot(kind="barh")
-                plt.title("Feature Importance")
-                plt.xlabel("Importance")
+                plt.title("AutoGluon Feature Importance (Top 20)")
+                plt.xlabel("Importance Score")
+                plt.ylabel("Features")
                 plt.tight_layout()
                 wandb.log({"feature_importance": wandb.Image(plt)})
                 plt.close()
         except Exception:
             pass
+        
+        wandb.finish()
     except Exception:
         pass
 
@@ -258,14 +301,22 @@ def save_best_model(predictor: Any) -> str:
 
     model_path = Path("data/06_models/ag_production.pkl")
     model_path.parent.mkdir(parents=True, exist_ok=True)
+    
     with open(model_path, "wb") as f:
         pickle.dump(predictor, f)
 
     try:
-        wandb.init(project="asi-project", resume="allow", reinit=False)
-        art = wandb.Artifact("ag_model", type="model")
+        wandb.init(project="asi-project", job_type="ag-model-save", reinit=True)
+        
+        art = wandb.Artifact(
+            "ag_model",
+            type="model",
+            description="AutoGluon trained model for lap time prediction"
+        )
         art.add_file(str(model_path))
-        wandb.log_artifact(art, aliases=["candidate"])
+        
+        wandb.log_artifact(art, aliases=["candidate", "latest"])
+        
         wandb.finish()
     except Exception:
         pass

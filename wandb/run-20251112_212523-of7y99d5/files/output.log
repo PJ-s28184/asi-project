@@ -1,0 +1,1006 @@
+No path specified. Models will be saved in: "AutogluonModels\ag-20251112_202526"
+Verbosity: 2 (Standard Logging)
+=================== System Info ===================
+AutoGluon Version:  1.4.0
+Python Version:     3.12.4
+Operating System:   Windows
+Platform Machine:   AMD64
+Platform Version:   10.0.26100
+CPU Count:          16
+Memory Avail:       4.08 GB / 31.12 GB (13.1%)
+Disk Space Avail:   124.69 GB / 1862.18 GB (6.7%)
+===================================================
+Presets specified: ['best_quality']
+Using hyperparameters preset: hyperparameters='zeroshot'
+Setting dynamic_stacking from 'auto' to True. Reason: Enable dynamic_stacking when use_bag_holdout is disabled. (use_bag_holdout=False)
+Stack configuration (auto_stack=True): num_stack_levels=1, num_bag_folds=8, num_bag_sets=1
+DyStack is enabled (dynamic_stacking=True). AutoGluon will try to determine whether the input data is affected by stacked overfitting and enable or disable stacking as a consequence.
+	This is used to identify the optimal `num_stack_levels` value. Copies of AutoGluon will be fit on subsets of the data. Then holdout validation data is used to detect stacked overfitting.
+	Running DyStack for up to 150s of the 600s of remaining time (25%).
+[2;36m[11/12/25 21:25:27][0m[2;36m [0m[33mWARNING [0m C:\Users\adaml\miniconda3\Lib\site-packages\autogluon\tabular\predictor\predictor.py:[1;36m1444[0m: UserWarning: Failed to    ]8;id=551092;file://C:\Users\adaml\miniconda3\Lib\warnings.py\[2mwarnings.py[0m]8;;\[2m:[0m]8;id=723382;file://C:\Users\adaml\miniconda3\Lib\warnings.py#112\[2m112[0m]8;;\
+[2;36m                    [0m         use ray for memory safe fits. Falling back to normal fit. Error: [1;35mImportError[0m[1m([0m[32m'ray is required to train folds in [0m     [2m               [0m
+[2;36m                    [0m         [32mparallel for TabularPredictor or HPO for MultiModalPredictor. A quick tip is to install via `pip install [0m            [2m               [0m
+[2;36m                    [0m         [32m"ray>=2.10.0,<2.45.0"`'[0m[1m)[0m                                                                                             [2m               [0m
+[2;36m                    [0m           stacked_overfitting = [1;35mself._sub_fit_memory_save_wrapper[0m[1m([0m                                                           [2m               [0m
+[2;36m                    [0m                                                                                                                              [2m               [0m
+		Context path: "C:\Users\adaml\Videos\asi-project\AutogluonModels\ag-20251112_202526\ds_sub_fit\sub_fit_ho"
+Running DyStack sub-fit ...
+Beginning AutoGluon training ... Time limit = 150s
+AutoGluon will save models to "C:\Users\adaml\Videos\asi-project\AutogluonModels\ag-20251112_202526\ds_sub_fit\sub_fit_ho"
+Train Data Rows:    269777
+Train Data Columns: 29
+Label Column:       target
+Problem Type:       regression
+Preprocessing data ...
+Using Feature Generators to preprocess the data ...
+Fitting AutoMLPipelineFeatureGenerator...
+	Available Memory:                    4079.12 MB
+	Train Data (Original)  Memory Usage: 59.69 MB (1.5% of available memory)
+	Inferring data type of each feature based on column values. Set feature_metadata_in to manually specify special dtypes of the features.
+	Stage 1 Generators:
+		Fitting AsTypeFeatureGenerator...
+	Stage 2 Generators:
+		Fitting FillNaFeatureGenerator...
+	Stage 3 Generators:
+		Fitting IdentityFeatureGenerator...
+	Stage 4 Generators:
+		Fitting DropUniqueFeatureGenerator...
+	Stage 5 Generators:
+		Fitting DropDuplicatesFeatureGenerator...
+	Types of features in original data (raw dtype, special dtypes):
+		('float', []) : 17 | ['s1', 's2', 's3', 'kph', 'top_speed', ...]
+		('int', [])   : 12 | ['Unnamed: 0', 'number', 'driver_number', 'lap_number', 'lap_improvement', ...]
+	Types of features in processed data (raw dtype, special dtypes):
+		('float', []) : 17 | ['s1', 's2', 's3', 'kph', 'top_speed', ...]
+		('int', [])   : 12 | ['Unnamed: 0', 'number', 'driver_number', 'lap_number', 'lap_improvement', ...]
+	0.6s = Fit runtime
+	29 features in original data used to generate 29 features in processed data.
+	Train Data (Processed) Memory Usage: 59.69 MB (1.5% of available memory)
+Data preprocessing and feature engineering runtime = 0.66s ...
+AutoGluon will gauge predictive performance using evaluation metric: 'root_mean_squared_error'
+	This metric's sign has been flipped to adhere to being higher_is_better. The metric score can be multiplied by -1 to get the metric value.
+	To change this, specify the eval_metric parameter of Predictor()
+Large model count detected (110 configs) ... Only displaying the first 3 models of each family. To see all, set `verbosity=3`.
+User-specified model hyperparameters to be fit:
+{
+	'NN_TORCH': [{}, {'activation': 'elu', 'dropout_prob': 0.10077639529843717, 'hidden_size': 108, 'learning_rate': 0.002735937344002146, 'num_layers': 4, 'use_batchnorm': True, 'weight_decay': 1.356433327634438e-12, 'ag_args': {'name_suffix': '_r79', 'priority': -2}}, {'activation': 'elu', 'dropout_prob': 0.11897478034205347, 'hidden_size': 213, 'learning_rate': 0.0010474382260641949, 'num_layers': 4, 'use_batchnorm': False, 'weight_decay': 5.594471067786272e-10, 'ag_args': {'name_suffix': '_r22', 'priority': -7}}],
+	'GBM': [{'extra_trees': True, 'ag_args': {'name_suffix': 'XT'}}, {}, {'learning_rate': 0.03, 'num_leaves': 128, 'feature_fraction': 0.9, 'min_data_in_leaf': 3, 'ag_args': {'name_suffix': 'Large', 'priority': 0, 'hyperparameter_tune_kwargs': None}}],
+	'CAT': [{}, {'depth': 6, 'grow_policy': 'SymmetricTree', 'l2_leaf_reg': 2.1542798306067823, 'learning_rate': 0.06864209415792857, 'max_ctr_complexity': 4, 'one_hot_max_size': 10, 'ag_args': {'name_suffix': '_r177', 'priority': -1}}, {'depth': 8, 'grow_policy': 'Depthwise', 'l2_leaf_reg': 2.7997999596449104, 'learning_rate': 0.031375015734637225, 'max_ctr_complexity': 2, 'one_hot_max_size': 3, 'ag_args': {'name_suffix': '_r9', 'priority': -5}}],
+	'XGB': [{}, {'colsample_bytree': 0.6917311125174739, 'enable_categorical': False, 'learning_rate': 0.018063876087523967, 'max_depth': 10, 'min_child_weight': 0.6028633586934382, 'ag_args': {'name_suffix': '_r33', 'priority': -8}}, {'colsample_bytree': 0.6628423832084077, 'enable_categorical': False, 'learning_rate': 0.08775715546881824, 'max_depth': 5, 'min_child_weight': 0.6294123374222513, 'ag_args': {'name_suffix': '_r89', 'priority': -16}}],
+	'FASTAI': [{}, {'bs': 256, 'emb_drop': 0.5411770367537934, 'epochs': 43, 'layers': [800, 400], 'lr': 0.01519848858318159, 'ps': 0.23782946566604385, 'ag_args': {'name_suffix': '_r191', 'priority': -4}}, {'bs': 2048, 'emb_drop': 0.05070411322605811, 'epochs': 29, 'layers': [200, 100], 'lr': 0.08974235041576624, 'ps': 0.10393466140748028, 'ag_args': {'name_suffix': '_r102', 'priority': -11}}],
+	'RF': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+	'XT': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+}
+AutoGluon will fit 2 stack levels (L1 to L2) ...
+Fitting 106 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT_BAG_L1 ... Training model for up to 99.53s of the 149.33s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+[2;36m[11/12/25 21:25:28][0m[2;36m [0m[33mWARNING [0m C:\Users\adaml\miniconda3\Lib\site-packages\joblib\externals\loky\backend\context.py:[1;36m136[0m: UserWarning: Could not     ]8;id=202512;file://C:\Users\adaml\miniconda3\Lib\warnings.py\[2mwarnings.py[0m]8;;\[2m:[0m]8;id=563559;file://C:\Users\adaml\miniconda3\Lib\warnings.py#112\[2m112[0m]8;;\
+[2;36m                    [0m         find the number of physical cores for the following reason:                                                          [2m               [0m
+[2;36m                    [0m         [1m[[0mWinError [1;36m2[0m[1m][0m The system cannot find the file specified                                                               [2m               [0m
+[2;36m                    [0m         Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the     [2m               [0m
+[2;36m                    [0m         number of cores you want to use.                                                                                     [2m               [0m
+[2;36m                    [0m           [1;35mwarnings.warn[0m[1m([0m                                                                                                     [2m               [0m
+[2;36m                    [0m                                                                                                                              [2m               [0m
+  File "C:\Users\adaml\miniconda3\Lib\site-packages\joblib\externals\loky\backend\context.py", line 257, in _count_physical_cores
+    cpu_info = subprocess.run(
+               ^^^^^^^^^^^^^^^
+  File "C:\Users\adaml\miniconda3\Lib\subprocess.py", line 548, in run
+    with Popen(*popenargs, **kwargs) as process:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\adaml\miniconda3\Lib\subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "C:\Users\adaml\miniconda3\Lib\subprocess.py", line 1538, in _execute_child
+    hp, ht, pid, tid = _winapi.CreateProcess(executable, args,
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Will use sequential fold fitting strategy because import of ray failed. Reason: ray is required to train folds in parallel for TabularPredictor or HPO for MultiModalPredictor. A quick tip is to install via `pip install "ray>=2.10.0,<2.45.0"`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBMXT_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: LightGBM_BAG_L1 ... Training model for up to 99.05s of the 148.84s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: RandomForestMSE_BAG_L1 ... Training model for up to 98.55s of the 148.35s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 281 due to low memory. Expected memory usage reduced from 15.97% -> 15.0% of available memory...
+	Warning: Reducing model 'n_estimators' from 281 -> 87 due to low time. Expected time usage reduced from 315.9s -> 98.3s...
+	-14.5556	 = Validation score   (-root_mean_squared_error)
+	35.12s	 = Training   runtime
+	2.14s	 = Validation runtime
+Fitting model: CatBoost_BAG_L1 ... Training model for up to 61.05s of the 110.84s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: ExtraTreesMSE_BAG_L1 ... Training model for up to 60.53s of the 110.32s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 273 due to low memory. Expected memory usage reduced from 16.45% -> 15.0% of available memory...
+	-13.7138	 = Validation score   (-root_mean_squared_error)
+	14.82s	 = Training   runtime
+	6.94s	 = Validation runtime
+Fitting model: NeuralNetFastAI_BAG_L1 ... Training model for up to 38.19s of the 87.98s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: XGBoost_BAG_L1 ... Training model for up to 37.59s of the 87.39s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: NeuralNetTorch_BAG_L1 ... Training model for up to 36.81s of the 86.60s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBMLarge_BAG_L1 ... Training model for up to 36.28s of the 86.08s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBMLarge_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: CatBoost_r177_BAG_L1 ... Training model for up to 35.81s of the 85.60s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r177_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetTorch_r79_BAG_L1 ... Training model for up to 35.34s of the 85.14s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r79_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBM_r131_BAG_L1 ... Training model for up to 34.87s of the 84.67s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r131_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetFastAI_r191_BAG_L1 ... Training model for up to 34.39s of the 84.19s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r191_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: CatBoost_r9_BAG_L1 ... Training model for up to 33.93s of the 83.72s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r9_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: LightGBM_r96_BAG_L1 ... Training model for up to 33.47s of the 83.27s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r96_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetTorch_r22_BAG_L1 ... Training model for up to 33.02s of the 82.81s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r22_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: XGBoost_r33_BAG_L1 ... Training model for up to 32.55s of the 82.35s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_r33_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: ExtraTrees_r42_BAG_L1 ... Training model for up to 31.91s of the 81.71s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 262 due to low time. Expected time usage reduced from 36.2s -> 31.7s...
+	-13.7852	 = Validation score   (-root_mean_squared_error)
+	12.86s	 = Training   runtime
+	7.11s	 = Validation runtime
+Fitting model: CatBoost_r137_BAG_L1 ... Training model for up to 11.36s of the 61.16s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r137_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r102_BAG_L1 ... Training model for up to 10.81s of the 60.60s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r102_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: CatBoost_r13_BAG_L1 ... Training model for up to 10.29s of the 60.08s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r13_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: RandomForest_r195_BAG_L1 ... Training model for up to 9.75s of the 59.55s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 153 due to low memory. Expected memory usage reduced from 29.34% -> 15.0% of available memory...
+	Warning: Model is expected to require 152.0s to train, which exceeds the maximum time limit of 9.5s, skipping model...
+	Time limit exceeded... Skipping RandomForest_r195_BAG_L1.
+Fitting model: LightGBM_r188_BAG_L1 ... Training model for up to 5.39s of the 55.18s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r188_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetFastAI_r145_BAG_L1 ... Training model for up to 4.90s of the 54.70s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r145_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: XGBoost_r89_BAG_L1 ... Training model for up to 4.43s of the 54.22s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_r89_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: NeuralNetTorch_r30_BAG_L1 ... Training model for up to 3.74s of the 53.54s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r30_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBM_r130_BAG_L1 ... Training model for up to 3.26s of the 53.05s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r130_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetTorch_r86_BAG_L1 ... Training model for up to 2.77s of the 52.56s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r86_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: CatBoost_r50_BAG_L1 ... Training model for up to 2.27s of the 52.07s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r50_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r11_BAG_L1 ... Training model for up to 1.66s of the 51.46s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r11_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: XGBoost_r194_BAG_L1 ... Training model for up to 1.13s of the 50.92s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Model has no time left to train, skipping model... (Time Left = -0.0s)
+	Time limit exceeded... Skipping XGBoost_r194_BAG_L1.
+Fitting model: ExtraTrees_r172_BAG_L1 ... Training model for up to 0.59s of the 50.39s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Model is expected to require 49.6s to train, which exceeds the maximum time limit of 0.3s, skipping model...
+	Time limit exceeded... Skipping ExtraTrees_r172_BAG_L1.
+Fitting model: WeightedEnsemble_L2 ... Training model for up to 149.33s of the 49.26s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Ensemble Weights: {'ExtraTreesMSE_BAG_L1': 0.739, 'ExtraTrees_r42_BAG_L1': 0.261}
+	-13.7038	 = Validation score   (-root_mean_squared_error)
+	0.12s	 = Training   runtime
+	0.0s	 = Validation runtime
+Fitting 106 L2 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT_BAG_L2 ... Training model for up to 49.11s of the 49.09s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBMXT_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: LightGBM_BAG_L2 ... Training model for up to 48.58s of the 48.56s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: RandomForestMSE_BAG_L2 ... Training model for up to 48.05s of the 48.03s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Model is expected to require 421.7s to train, which exceeds the maximum time limit of 47.8s, skipping model...
+	Time limit exceeded... Skipping RandomForestMSE_BAG_L2.
+Fitting model: CatBoost_BAG_L2 ... Training model for up to 42.04s of the 42.02s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: ExtraTreesMSE_BAG_L2 ... Training model for up to 41.48s of the 41.46s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 231 due to low time. Expected time usage reduced from 53.4s -> 41.2s...
+	-13.1148	 = Validation score   (-root_mean_squared_error)
+	13.43s	 = Training   runtime
+	5.74s	 = Validation runtime
+Fitting model: NeuralNetFastAI_BAG_L2 ... Training model for up to 21.86s of the 21.84s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: XGBoost_BAG_L2 ... Training model for up to 21.26s of the 21.24s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: NeuralNetTorch_BAG_L2 ... Training model for up to 20.52s of the 20.50s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBMLarge_BAG_L2 ... Training model for up to 19.99s of the 19.97s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBMLarge_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: CatBoost_r177_BAG_L2 ... Training model for up to 19.47s of the 19.44s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r177_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetTorch_r79_BAG_L2 ... Training model for up to 18.92s of the 18.90s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r79_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBM_r131_BAG_L2 ... Training model for up to 18.39s of the 18.37s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r131_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetFastAI_r191_BAG_L2 ... Training model for up to 17.85s of the 17.83s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r191_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: CatBoost_r9_BAG_L2 ... Training model for up to 17.32s of the 17.29s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r9_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: LightGBM_r96_BAG_L2 ... Training model for up to 16.75s of the 16.73s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r96_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetTorch_r22_BAG_L2 ... Training model for up to 16.22s of the 16.20s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r22_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: XGBoost_r33_BAG_L2 ... Training model for up to 15.69s of the 15.66s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_r33_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: ExtraTrees_r42_BAG_L2 ... Training model for up to 14.97s of the 14.95s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 299 due to low memory. Expected memory usage reduced from 15.03% -> 15.0% of available memory...
+	Warning: Reducing model 'n_estimators' from 299 -> 97 due to low time. Expected time usage reduced from 44.9s -> 14.7s...
+	Not enough time to generate out-of-fold predictions for model. Estimated time required was 14.84s compared to 13.84s of available time.
+	Time limit exceeded... Skipping ExtraTrees_r42_BAG_L2.
+Fitting model: CatBoost_r137_BAG_L2 ... Training model for up to 9.29s of the 9.27s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r137_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r102_BAG_L2 ... Training model for up to 8.74s of the 8.72s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r102_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: CatBoost_r13_BAG_L2 ... Training model for up to 8.20s of the 8.18s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r13_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: RandomForest_r195_BAG_L2 ... Training model for up to 7.66s of the 7.64s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 150 due to low memory. Expected memory usage reduced from 29.93% -> 15.0% of available memory...
+	Warning: Model is expected to require 174.2s to train, which exceeds the maximum time limit of 7.4s, skipping model...
+	Time limit exceeded... Skipping RandomForest_r195_BAG_L2.
+Fitting model: LightGBM_r188_BAG_L2 ... Training model for up to 2.63s of the 2.61s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r188_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetFastAI_r145_BAG_L2 ... Training model for up to 2.11s of the 2.08s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r145_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: XGBoost_r89_BAG_L2 ... Training model for up to 1.57s of the 1.55s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Model has no time left to train, skipping model... (Time Left = -0.0s)
+	Time limit exceeded... Skipping XGBoost_r89_BAG_L2.
+Fitting model: WeightedEnsemble_L3 ... Training model for up to 149.33s of the 0.93s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Ensemble Weights: {'ExtraTreesMSE_BAG_L2': 1.0}
+	-13.1148	 = Validation score   (-root_mean_squared_error)
+	0.15s	 = Training   runtime
+	0.0s	 = Validation runtime
+AutoGluon training complete, total runtime = 149.28s ... Best model: WeightedEnsemble_L3 | Estimated inference throughput: 12295.6 rows/s (269777 batch size)
+TabularPredictor saved. To load, use: predictor = TabularPredictor.load("C:\Users\adaml\Videos\asi-project\AutogluonModels\ag-20251112_202526\ds_sub_fit\sub_fit_ho")
+Deleting DyStack predictor artifacts (clean_up_fits=True) ...
+Leaderboard on holdout data (DyStack):
+                    model  score_holdout  score_val              eval_metric  pred_time_test  pred_time_val   fit_time  pred_time_test_marginal  pred_time_val_marginal  fit_time_marginal  stack_level  can_infer  fit_order
+0   ExtraTrees_r42_BAG_L1      -0.419683 -13.785177  root_mean_squared_error        0.586537       7.112260  12.862010                 0.586537                7.112260          12.862010            1       True          3
+1    ExtraTreesMSE_BAG_L2      -0.457151 -13.114792  root_mean_squared_error        1.527413      21.938005  76.228019                 0.365757                5.744640          13.428430            2       True          5
+2     WeightedEnsemble_L3      -0.457151 -13.114792  root_mean_squared_error        1.538417      21.941005  76.378187                 0.011004                0.003000           0.150167            3       True          6
+3     WeightedEnsemble_L2      -0.890129 -13.703846  root_mean_squared_error        1.038020      14.055801  27.800939                 0.004000                0.002998           0.118687            2       True          4
+4    ExtraTreesMSE_BAG_L1      -1.087808 -13.713795  root_mean_squared_error        0.447483       6.940544  14.820243                 0.447483                6.940544          14.820243            1       True          2
+5  RandomForestMSE_BAG_L1      -1.340456 -14.555552  root_mean_squared_error        0.127636       2.140561  35.117338                 0.127636                2.140561          35.117338            1       True          1
+	1	 = Optimal   num_stack_levels (Stacked Overfitting Occurred: False)
+	152s	 = DyStack   runtime |	448s	 = Remaining runtime
+Starting main fit with num_stack_levels=1.
+	For future fit calls on this dataset, you can skip DyStack to save time: `predictor.fit(..., dynamic_stacking=False, num_stack_levels=1)`
+Beginning AutoGluon training ... Time limit = 448s
+AutoGluon will save models to "C:\Users\adaml\Videos\asi-project\AutogluonModels\ag-20251112_202526"
+Train Data Rows:    303500
+Train Data Columns: 29
+Label Column:       target
+Problem Type:       regression
+Preprocessing data ...
+Using Feature Generators to preprocess the data ...
+Fitting AutoMLPipelineFeatureGenerator...
+	Available Memory:                    5227.37 MB
+	Train Data (Original)  Memory Usage: 67.15 MB (1.3% of available memory)
+	Inferring data type of each feature based on column values. Set feature_metadata_in to manually specify special dtypes of the features.
+	Stage 1 Generators:
+		Fitting AsTypeFeatureGenerator...
+	Stage 2 Generators:
+		Fitting FillNaFeatureGenerator...
+	Stage 3 Generators:
+		Fitting IdentityFeatureGenerator...
+	Stage 4 Generators:
+		Fitting DropUniqueFeatureGenerator...
+	Stage 5 Generators:
+		Fitting DropDuplicatesFeatureGenerator...
+	Types of features in original data (raw dtype, special dtypes):
+		('float', []) : 17 | ['s1', 's2', 's3', 'kph', 'top_speed', ...]
+		('int', [])   : 12 | ['Unnamed: 0', 'number', 'driver_number', 'lap_number', 'lap_improvement', ...]
+	Types of features in processed data (raw dtype, special dtypes):
+		('float', []) : 17 | ['s1', 's2', 's3', 'kph', 'top_speed', ...]
+		('int', [])   : 12 | ['Unnamed: 0', 'number', 'driver_number', 'lap_number', 'lap_improvement', ...]
+	0.7s = Fit runtime
+	29 features in original data used to generate 29 features in processed data.
+	Train Data (Processed) Memory Usage: 67.15 MB (1.3% of available memory)
+Data preprocessing and feature engineering runtime = 0.75s ...
+AutoGluon will gauge predictive performance using evaluation metric: 'root_mean_squared_error'
+	This metric's sign has been flipped to adhere to being higher_is_better. The metric score can be multiplied by -1 to get the metric value.
+	To change this, specify the eval_metric parameter of Predictor()
+Large model count detected (110 configs) ... Only displaying the first 3 models of each family. To see all, set `verbosity=3`.
+User-specified model hyperparameters to be fit:
+{
+	'NN_TORCH': [{}, {'activation': 'elu', 'dropout_prob': 0.10077639529843717, 'hidden_size': 108, 'learning_rate': 0.002735937344002146, 'num_layers': 4, 'use_batchnorm': True, 'weight_decay': 1.356433327634438e-12, 'ag_args': {'name_suffix': '_r79', 'priority': -2}}, {'activation': 'elu', 'dropout_prob': 0.11897478034205347, 'hidden_size': 213, 'learning_rate': 0.0010474382260641949, 'num_layers': 4, 'use_batchnorm': False, 'weight_decay': 5.594471067786272e-10, 'ag_args': {'name_suffix': '_r22', 'priority': -7}}],
+	'GBM': [{'extra_trees': True, 'ag_args': {'name_suffix': 'XT'}}, {}, {'learning_rate': 0.03, 'num_leaves': 128, 'feature_fraction': 0.9, 'min_data_in_leaf': 3, 'ag_args': {'name_suffix': 'Large', 'priority': 0, 'hyperparameter_tune_kwargs': None}}],
+	'CAT': [{}, {'depth': 6, 'grow_policy': 'SymmetricTree', 'l2_leaf_reg': 2.1542798306067823, 'learning_rate': 0.06864209415792857, 'max_ctr_complexity': 4, 'one_hot_max_size': 10, 'ag_args': {'name_suffix': '_r177', 'priority': -1}}, {'depth': 8, 'grow_policy': 'Depthwise', 'l2_leaf_reg': 2.7997999596449104, 'learning_rate': 0.031375015734637225, 'max_ctr_complexity': 2, 'one_hot_max_size': 3, 'ag_args': {'name_suffix': '_r9', 'priority': -5}}],
+	'XGB': [{}, {'colsample_bytree': 0.6917311125174739, 'enable_categorical': False, 'learning_rate': 0.018063876087523967, 'max_depth': 10, 'min_child_weight': 0.6028633586934382, 'ag_args': {'name_suffix': '_r33', 'priority': -8}}, {'colsample_bytree': 0.6628423832084077, 'enable_categorical': False, 'learning_rate': 0.08775715546881824, 'max_depth': 5, 'min_child_weight': 0.6294123374222513, 'ag_args': {'name_suffix': '_r89', 'priority': -16}}],
+	'FASTAI': [{}, {'bs': 256, 'emb_drop': 0.5411770367537934, 'epochs': 43, 'layers': [800, 400], 'lr': 0.01519848858318159, 'ps': 0.23782946566604385, 'ag_args': {'name_suffix': '_r191', 'priority': -4}}, {'bs': 2048, 'emb_drop': 0.05070411322605811, 'epochs': 29, 'layers': [200, 100], 'lr': 0.08974235041576624, 'ps': 0.10393466140748028, 'ag_args': {'name_suffix': '_r102', 'priority': -11}}],
+	'RF': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+	'XT': [{'criterion': 'gini', 'ag_args': {'name_suffix': 'Gini', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'entropy', 'ag_args': {'name_suffix': 'Entr', 'problem_types': ['binary', 'multiclass']}}, {'criterion': 'squared_error', 'ag_args': {'name_suffix': 'MSE', 'problem_types': ['regression', 'quantile']}}],
+}
+AutoGluon will fit 2 stack levels (L1 to L2) ...
+Fitting 106 L1 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT_BAG_L1 ... Training model for up to 298.38s of the 447.67s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBMXT_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: LightGBM_BAG_L1 ... Training model for up to 297.83s of the 447.12s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: RandomForestMSE_BAG_L1 ... Training model for up to 297.30s of the 446.59s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 225 due to low time. Expected time usage reduced from 394.6s -> 297.0s...
+	-12.256	 = Validation score   (-root_mean_squared_error)
+	95.9s	 = Training   runtime
+	6.24s	 = Validation runtime
+Fitting model: CatBoost_BAG_L1 ... Training model for up to 194.69s of the 343.99s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: ExtraTreesMSE_BAG_L1 ... Training model for up to 194.08s of the 343.37s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	-12.0828	 = Validation score   (-root_mean_squared_error)
+	17.9s	 = Training   runtime
+	8.31s	 = Validation runtime
+Fitting model: NeuralNetFastAI_BAG_L1 ... Training model for up to 167.35s of the 316.64s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: XGBoost_BAG_L1 ... Training model for up to 166.84s of the 316.14s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: NeuralNetTorch_BAG_L1 ... Training model for up to 166.14s of the 315.44s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBMLarge_BAG_L1 ... Training model for up to 165.61s of the 314.90s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBMLarge_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: CatBoost_r177_BAG_L1 ... Training model for up to 165.07s of the 314.36s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r177_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetTorch_r79_BAG_L1 ... Training model for up to 164.50s of the 313.80s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r79_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBM_r131_BAG_L1 ... Training model for up to 163.96s of the 313.25s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r131_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetFastAI_r191_BAG_L1 ... Training model for up to 163.44s of the 312.74s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r191_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: CatBoost_r9_BAG_L1 ... Training model for up to 162.93s of the 312.22s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r9_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: LightGBM_r96_BAG_L1 ... Training model for up to 162.43s of the 311.73s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r96_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetTorch_r22_BAG_L1 ... Training model for up to 161.95s of the 311.24s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r22_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: XGBoost_r33_BAG_L1 ... Training model for up to 161.45s of the 310.75s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_r33_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: ExtraTrees_r42_BAG_L1 ... Training model for up to 160.78s of the 310.07s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	-13.3334	 = Validation score   (-root_mean_squared_error)
+	14.29s	 = Training   runtime
+	8.01s	 = Validation runtime
+Fitting model: CatBoost_r137_BAG_L1 ... Training model for up to 137.89s of the 287.18s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r137_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r102_BAG_L1 ... Training model for up to 137.38s of the 286.67s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r102_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: CatBoost_r13_BAG_L1 ... Training model for up to 136.88s of the 286.17s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r13_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: RandomForest_r195_BAG_L1 ... Training model for up to 136.39s of the 285.68s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 158 due to low memory. Expected memory usage reduced from 28.35% -> 15.0% of available memory...
+	Warning: Reducing model 'n_estimators' from 158 -> 152 due to low time. Expected time usage reduced from 141.2s -> 136.1s...
+	-10.9808	 = Validation score   (-root_mean_squared_error)
+	49.78s	 = Training   runtime
+	4.74s	 = Validation runtime
+Fitting model: LightGBM_r188_BAG_L1 ... Training model for up to 81.33s of the 230.62s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r188_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetFastAI_r145_BAG_L1 ... Training model for up to 80.83s of the 230.12s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r145_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: XGBoost_r89_BAG_L1 ... Training model for up to 80.35s of the 229.64s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_r89_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: NeuralNetTorch_r30_BAG_L1 ... Training model for up to 79.68s of the 228.97s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r30_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBM_r130_BAG_L1 ... Training model for up to 79.19s of the 228.49s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r130_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetTorch_r86_BAG_L1 ... Training model for up to 78.71s of the 228.00s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r86_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: CatBoost_r50_BAG_L1 ... Training model for up to 78.22s of the 227.51s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r50_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r11_BAG_L1 ... Training model for up to 77.74s of the 227.03s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r11_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: XGBoost_r194_BAG_L1 ... Training model for up to 77.25s of the 226.54s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_r194_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: ExtraTrees_r172_BAG_L1 ... Training model for up to 76.77s of the 226.06s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	-22.5098	 = Validation score   (-root_mean_squared_error)
+	16.08s	 = Training   runtime
+	7.68s	 = Validation runtime
+Fitting model: CatBoost_r69_BAG_L1 ... Training model for up to 52.59s of the 201.89s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r69_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r103_BAG_L1 ... Training model for up to 52.10s of the 201.39s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r103_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: NeuralNetTorch_r14_BAG_L1 ... Training model for up to 51.60s of the 200.89s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r14_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBM_r161_BAG_L1 ... Training model for up to 51.10s of the 200.39s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r161_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetFastAI_r143_BAG_L1 ... Training model for up to 50.61s of the 199.90s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r143_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: CatBoost_r70_BAG_L1 ... Training model for up to 50.12s of the 199.42s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r70_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r156_BAG_L1 ... Training model for up to 49.63s of the 198.93s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r156_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: LightGBM_r196_BAG_L1 ... Training model for up to 49.14s of the 198.43s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r196_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: RandomForest_r39_BAG_L1 ... Training model for up to 48.63s of the 197.92s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 211 due to low memory. Expected memory usage reduced from 21.28% -> 15.0% of available memory...
+	Warning: Reducing model 'n_estimators' from 211 -> 52 due to low time. Expected time usage reduced from 193.6s -> 48.3s...
+	-17.291	 = Validation score   (-root_mean_squared_error)
+	18.41s	 = Training   runtime
+	1.85s	 = Validation runtime
+Fitting model: CatBoost_r167_BAG_L1 ... Training model for up to 28.12s of the 177.41s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r167_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r95_BAG_L1 ... Training model for up to 27.63s of the 176.92s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r95_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: NeuralNetTorch_r41_BAG_L1 ... Training model for up to 27.13s of the 176.43s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r41_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: XGBoost_r98_BAG_L1 ... Training model for up to 26.64s of the 175.94s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_r98_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: LightGBM_r15_BAG_L1 ... Training model for up to 26.16s of the 175.45s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r15_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetTorch_r158_BAG_L1 ... Training model for up to 25.68s of the 174.97s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r158_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: CatBoost_r86_BAG_L1 ... Training model for up to 25.19s of the 174.48s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r86_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r37_BAG_L1 ... Training model for up to 24.70s of the 173.99s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r37_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: NeuralNetTorch_r197_BAG_L1 ... Training model for up to 24.19s of the 173.49s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r197_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: CatBoost_r49_BAG_L1 ... Training model for up to 23.70s of the 172.99s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r49_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: ExtraTrees_r49_BAG_L1 ... Training model for up to 23.19s of the 172.49s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 212 due to low memory. Expected memory usage reduced from 21.16% -> 15.0% of available memory...
+	-16.1447	 = Validation score   (-root_mean_squared_error)
+	4.61s	 = Training   runtime
+	6.27s	 = Validation runtime
+Fitting model: LightGBM_r143_BAG_L1 ... Training model for up to 11.70s of the 161.00s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r143_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: RandomForest_r127_BAG_L1 ... Training model for up to 11.20s of the 160.50s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 210 due to low memory. Expected memory usage reduced from 21.36% -> 15.0% of available memory...
+	Warning: Model is expected to require 246.1s to train, which exceeds the maximum time limit of 10.9s, skipping model...
+	Time limit exceeded... Skipping RandomForest_r127_BAG_L1.
+Fitting model: NeuralNetFastAI_r134_BAG_L1 ... Training model for up to 6.16s of the 155.45s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r134_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: RandomForest_r34_BAG_L1 ... Training model for up to 5.67s of the 154.97s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Model is expected to require 212.5s to train, which exceeds the maximum time limit of 5.4s, skipping model...
+	Time limit exceeded... Skipping RandomForest_r34_BAG_L1.
+Fitting model: LightGBM_r94_BAG_L1 ... Training model for up to 2.48s of the 151.78s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r94_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetTorch_r143_BAG_L1 ... Training model for up to 2.00s of the 151.29s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r143_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: CatBoost_r128_BAG_L1 ... Training model for up to 1.51s of the 150.80s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r128_BAG_L1 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r111_BAG_L1 ... Training model for up to 1.03s of the 150.33s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Model has no time left to train, skipping model... (Time Left = -0.0s)
+	Time limit exceeded... Skipping NeuralNetFastAI_r111_BAG_L1.
+Fitting model: NeuralNetTorch_r31_BAG_L1 ... Training model for up to 0.55s of the 149.84s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Model has no time left to train, skipping model... (Time Left = -0.1s)
+	Time limit exceeded... Skipping NeuralNetTorch_r31_BAG_L1.
+Fitting model: ExtraTrees_r4_BAG_L1 ... Training model for up to 0.06s of the 149.35s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Model has no time left to train, skipping model... (Time Left = -0.1s)
+	Time limit exceeded... Skipping ExtraTrees_r4_BAG_L1.
+Fitting model: WeightedEnsemble_L2 ... Training model for up to 360.00s of the 149.08s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Ensemble Weights: {'RandomForest_r195_BAG_L1': 1.0}
+	-10.9808	 = Validation score   (-root_mean_squared_error)
+	0.26s	 = Training   runtime
+	0.0s	 = Validation runtime
+Fitting 106 L2 models, fit_strategy="sequential" ...
+Fitting model: LightGBMXT_BAG_L2 ... Training model for up to 148.79s of the 148.76s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBMXT_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: LightGBM_BAG_L2 ... Training model for up to 148.18s of the 148.14s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: RandomForestMSE_BAG_L2 ... Training model for up to 147.55s of the 147.52s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 84 due to low time. Expected time usage reduced from 521.9s -> 147.2s...
+	-12.1657	 = Validation score   (-root_mean_squared_error)
+	53.44s	 = Training   runtime
+	2.28s	 = Validation runtime
+Fitting model: CatBoost_BAG_L2 ... Training model for up to 91.55s of the 91.51s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: ExtraTreesMSE_BAG_L2 ... Training model for up to 90.91s of the 90.87s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	-11.8067	 = Validation score   (-root_mean_squared_error)
+	20.12s	 = Training   runtime
+	8.05s	 = Validation runtime
+Fitting model: NeuralNetFastAI_BAG_L2 ... Training model for up to 62.19s of the 62.16s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: XGBoost_BAG_L2 ... Training model for up to 61.56s of the 61.53s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: NeuralNetTorch_BAG_L2 ... Training model for up to 60.70s of the 60.67s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBMLarge_BAG_L2 ... Training model for up to 60.07s of the 60.04s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBMLarge_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: CatBoost_r177_BAG_L2 ... Training model for up to 59.44s of the 59.41s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r177_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetTorch_r79_BAG_L2 ... Training model for up to 58.81s of the 58.78s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r79_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBM_r131_BAG_L2 ... Training model for up to 58.18s of the 58.14s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r131_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetFastAI_r191_BAG_L2 ... Training model for up to 57.55s of the 57.52s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r191_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: CatBoost_r9_BAG_L2 ... Training model for up to 56.93s of the 56.89s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r9_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: LightGBM_r96_BAG_L2 ... Training model for up to 56.30s of the 56.27s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r96_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetTorch_r22_BAG_L2 ... Training model for up to 55.68s of the 55.65s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r22_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: XGBoost_r33_BAG_L2 ... Training model for up to 55.03s of the 55.00s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_r33_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: ExtraTrees_r42_BAG_L2 ... Training model for up to 54.17s of the 54.14s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	-11.8824	 = Validation score   (-root_mean_squared_error)
+	16.78s	 = Training   runtime
+	8.47s	 = Validation runtime
+Fitting model: CatBoost_r137_BAG_L2 ... Training model for up to 28.30s of the 28.27s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r137_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r102_BAG_L2 ... Training model for up to 27.67s of the 27.64s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r102_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: CatBoost_r13_BAG_L2 ... Training model for up to 27.03s of the 27.00s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r13_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: RandomForest_r195_BAG_L2 ... Training model for up to 26.40s of the 26.37s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 184 due to low memory. Expected memory usage reduced from 24.42% -> 15.0% of available memory...
+	Warning: Model is expected to require 253.7s to train, which exceeds the maximum time limit of 26.0s, skipping model...
+	Time limit exceeded... Skipping RandomForest_r195_BAG_L2.
+Fitting model: LightGBM_r188_BAG_L2 ... Training model for up to 20.43s of the 20.40s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r188_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetFastAI_r145_BAG_L2 ... Training model for up to 19.81s of the 19.77s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r145_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: XGBoost_r89_BAG_L2 ... Training model for up to 19.18s of the 19.15s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_r89_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: NeuralNetTorch_r30_BAG_L2 ... Training model for up to 18.34s of the 18.30s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r30_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: LightGBM_r130_BAG_L2 ... Training model for up to 17.71s of the 17.68s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused LightGBM_r130_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import lightgbm` failed. A quick tip is to install via `pip install autogluon.tabular[lightgbm]==1.4.0`.
+Fitting model: NeuralNetTorch_r86_BAG_L2 ... Training model for up to 17.08s of the 17.05s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetTorch_r86_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Unable to import dependency torch
+A quick tip is to install via `pip install torch`.
+The minimum torch version is currently 2.2.
+Fitting model: CatBoost_r50_BAG_L2 ... Training model for up to 16.45s of the 16.41s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r50_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r11_BAG_L2 ... Training model for up to 15.80s of the 15.77s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r11_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: XGBoost_r194_BAG_L2 ... Training model for up to 15.16s of the 15.13s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused XGBoost_r194_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import xgboost` failed. A quick tip is to install via `pip install autogluon.tabular[xgboost]==1.4.0`.
+Fitting model: ExtraTrees_r172_BAG_L2 ... Training model for up to 14.53s of the 14.49s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Warning: Reducing model 'n_estimators' from 300 -> 91 due to low time. Expected time usage reduced from 46.3s -> 14.2s...
+	-22.3324	 = Validation score   (-root_mean_squared_error)
+	6.32s	 = Training   runtime
+	2.46s	 = Validation runtime
+Fitting model: CatBoost_r69_BAG_L2 ... Training model for up to 5.46s of the 5.43s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused CatBoost_r69_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		`import catboost` failed. A quick tip is to install via `pip install autogluon.tabular[catboost]==1.4.0`.
+Fitting model: NeuralNetFastAI_r103_BAG_L2 ... Training model for up to 4.82s of the 4.79s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Fitting 8 child models (S1F1 - S1F8) | Fitting with SequentialLocalFoldFittingStrategy (sequential: cpus=16, gpus=0)
+	Warning: Exception caused NeuralNetFastAI_r103_BAG_L2 to fail during training (ImportError)... Skipping this model.
+		Import fastai failed. A quick tip is to install via `pip install autogluon.tabular[fastai]==1.4.0`.
+Fitting model: WeightedEnsemble_L3 ... Training model for up to 360.00s of the 4.04s of remaining time.
+	Failed to import torch or check CUDA availability!Please ensure you have the correct version of PyTorch installed by running `pip install -U torch`
+	Ensemble Weights: {'RandomForest_r195_BAG_L1': 1.0}
+	-10.9808	 = Validation score   (-root_mean_squared_error)
+	0.4s	 = Training   runtime
+	0.0s	 = Validation runtime
+AutoGluon training complete, total runtime = 444.87s ... Best model: WeightedEnsemble_L2 | Estimated inference throughput: 63930.6 rows/s (303500 batch size)
+TabularPredictor saved. To load, use: predictor = TabularPredictor.load("C:\Users\adaml\Videos\asi-project\AutogluonModels\ag-20251112_202526")

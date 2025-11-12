@@ -22,6 +22,10 @@ data/06_models/**
 !data/**/.gitkeep
 !data/**/README.md
 
+# AutoGluon models (duże pliki)
+AutogluonModels/
+*.pkl
+
 # System
 .DS_Store
 Thumbs.db
