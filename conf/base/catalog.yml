@@ -36,3 +36,14 @@ model_file_path:
 metrics_baseline:
   type: pandas.JSONDataset
   filepath: data/08_reporting/metrics_baseline.json
+
+ag_predictor:
+  type: MemoryDataset
+
+ag_model:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/ag_production.pkl
+
+ag_metrics:
+  type: tracking.MetricsDataSet
+  filepath: data/09_tracking/ag_metrics.json

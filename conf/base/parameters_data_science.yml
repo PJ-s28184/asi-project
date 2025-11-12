@@ -3,3 +3,7 @@ data_science:
   target_column: lap_time_seconds
   test_size: 0.2
   random_state: 42
+  autogluon:
+    wandb_project: asi-project
+    time_limit: 600
+    presets: best_quality
