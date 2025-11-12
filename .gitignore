@@ -26,6 +26,9 @@ data/06_models/**
 AutogluonModels/
 *.pkl
 
+# W&B
+wandb/
+
 # System
 .DS_Store
 Thumbs.db
