@@ -72,3 +72,17 @@ Wszystko jest w `src/asi_project/pipelines/data_science/`. Model zapisuje się d
 ## Metryki
 
 Model używa MAE jako głównej metryki (bo rozkład czasów okrążeń jest bardzo skośny), plus RMSE, R² i MAPE dla porównania.
+
+## W&B
+### Comparison of AutoGluon experiments
+| run_id       | name                  | MAE     | MAPE   | RMSE    | MSE       | R²       | Runtime(s) |
+|--------------|---------------------|---------|--------|---------|-----------|----------|------------|
+| smi3qwbd     | splendid-lake-1      | 0.0490  | 5.084  | 25.848  | 0.001546  | 0.9987   | 0          |
+| zy1lkdaj     | serene-valley-8      | 0.0490  | 5.084  | 25.848  | 0.001546  | 0.9987   | 0          |
+| dv6yfpyk     | divine-durian-2      | 0.0490  | 5.084  | 25.848  | 0.001546  | 0.9987   | 0          |
+| b4sqcr6w     | ruby-pond-7          | 0.0491  | 4.750  | 22.564  | 0.001986  | 0.9989   | 0          |
+| dr324mmx     | happy-sea-5          | 0.0501  | 5.174  | 26.772  | 0.001932  | 0.9986   | 651        |
+| nxjupbfk     | major-plasma-3       | 0.0554  | 6.451  | 41.618  | 0.001615  | 0.9979   | 0          |
+| gkb8bskl     | sandy-sun-4          | 0.0554  | 6.451  | 41.618  | 0.001615  | 0.9979   | 0          |
+| l286uhy6     | vibrant-armadillo-12 | 0.2207  | 12.392 | 153.554 | 0.075311  | 0.9924   | 0          |
+
