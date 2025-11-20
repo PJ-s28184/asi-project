@@ -41,4 +41,3 @@ Thumbs.db
 conf/local/*
 !conf/local/.gitkeep
 data/02_interim/wec_lap_data_cleaned.csv
-data/02_interim/wec_lap_data_cleaned.csv

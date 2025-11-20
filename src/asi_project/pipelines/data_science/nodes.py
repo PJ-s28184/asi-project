@@ -60,37 +60,69 @@ def split(
         raise ValueError(f"target_column '{target_column}' not in dataframe")
 
     df_features = df.copy()
-    
-    if 'driver_number' in df_features.columns and 'lap_number' in df_features.columns:
-        df_features = df_features.sort_values(['driver_number', 'lap_number'])
-        
-        for col in ['s1', 's2', 's3', 'kph', 'top_speed']:
+
+    if "driver_number" in df_features.columns and "lap_number" in df_features.columns:
+        df_features = df_features.sort_values(["driver_number", "lap_number"])
+
+        for col in ["s1", "s2", "s3", "kph", "top_speed"]:
             if col in df_features.columns:
-                df_features[f'{col}_prev'] = df_features.groupby('driver_number')[col].shift(1)
-                df_features[f'{col}_avg_3'] = df_features.groupby('driver_number')[col].shift(1).rolling(3, min_periods=1).mean().reset_index(level=0, drop=True)
-        
+                df_features[f"{col}_prev"] = df_features.groupby("driver_number")[
+                    col
+                ].shift(1)
+                df_features[f"{col}_avg_3"] = (
+                    df_features.groupby("driver_number")[col]
+                    .shift(1)
+                    .rolling(3, min_periods=1)
+                    .mean()
+                    .reset_index(level=0, drop=True)
+                )
+
         if target_column in df_features.columns:
-            df_features['lap_time_prev'] = df_features.groupby('driver_number')[target_column].shift(1)
-            df_features['lap_time_avg_3'] = df_features.groupby('driver_number')[target_column].shift(1).rolling(3, min_periods=1).mean().reset_index(level=0, drop=True)
-    
+            df_features["lap_time_prev"] = df_features.groupby("driver_number")[
+                target_column
+            ].shift(1)
+            df_features["lap_time_avg_3"] = (
+                df_features.groupby("driver_number")[target_column]
+                .shift(1)
+                .rolling(3, min_periods=1)
+                .mean()
+                .reset_index(level=0, drop=True)
+            )
+
     leakage_columns = [
-        's1', 's2', 's3',
-        's1_improvement', 's2_improvement', 's3_improvement',
-        'lap_time_ms', 'lap_time_s', 'lap_time',
-        'elapsed_ms', 'elapsed_s', 'elapsed',
-        'interval_ms', 'interval', 'gap',
-        'class_interval', 'class_gap',
-        'position', 'class_position'
+        "s1",
+        "s2",
+        "s3",
+        "s1_improvement",
+        "s2_improvement",
+        "s3_improvement",
+        "lap_time_ms",
+        "lap_time_s",
+        "lap_time",
+        "elapsed_ms",
+        "elapsed_s",
+        "elapsed",
+        "interval_ms",
+        "interval",
+        "gap",
+        "class_interval",
+        "class_gap",
+        "position",
+        "class_position",
     ]
-    
+
     y = df_features[target_column]
-    
-    cols_to_drop = [target_column] + [col for col in leakage_columns if col in df_features.columns and col != target_column]
+
+    cols_to_drop = [target_column] + [
+        col
+        for col in leakage_columns
+        if col in df_features.columns and col != target_column
+    ]
     X = df_features.drop(columns=cols_to_drop).select_dtypes(include=["number"])
-    
+
     X = X.dropna()
     y = y[X.index]
-    
+
     if X.shape[1] == 0:
         X = pd.DataFrame({"bias": 1.0}, index=df.index)
 
@@ -282,7 +314,7 @@ def evaluate_autogluon(
                 plt.close()
         except Exception:
             pass
-        
+
         wandb.finish()
     except Exception:
         pass
@@ -301,22 +333,22 @@ def save_best_model(predictor: Any) -> str:
 
     model_path = Path("data/06_models/ag_production.pkl")
     model_path.parent.mkdir(parents=True, exist_ok=True)
-    
+
     with open(model_path, "wb") as f:
         pickle.dump(predictor, f)
 
     try:
         wandb.init(project="asi-project", job_type="ag-model-save", reinit=True)
-        
+
         art = wandb.Artifact(
             "ag_model",
             type="model",
-            description="AutoGluon trained model for lap time prediction"
+            description="AutoGluon trained model for lap time prediction",
         )
         art.add_file(str(model_path))
-        
+
         wandb.log_artifact(art, aliases=["candidate", "latest"])
-        
+
         wandb.finish()
     except Exception:
         pass

@@ -4,7 +4,7 @@ Predict lap time (seconds) for WEC laps. Intended for exploratory modeling and f
 
 ## Data
 - Source: https://www.kaggle.com/datasets/tristenterracciano/fia-wec-lap-data-20122022
-- Size: 504000 rows 
+- Size: 504000 rows
 - PII: none
 - License: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 IGO (https://creativecommons.org/licenses/by-nc-sa/3.0/igo/)
 ## Metrics (main + secondary, test split)

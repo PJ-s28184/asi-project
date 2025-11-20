@@ -85,4 +85,3 @@ Model używa MAE jako głównej metryki (bo rozkład czasów okrążeń jest bar
 | nxjupbfk     | major-plasma-3       | 0.0554  | 6.451  | 41.618  | 0.001615  | 0.9979   | 0          |
 | gkb8bskl     | sandy-sun-4          | 0.0554  | 6.451  | 41.618  | 0.001615  | 0.9979   | 0          |
 | l286uhy6     | vibrant-armadillo-12 | 0.2207  | 12.392 | 153.554 | 0.075311  | 0.9924   | 0          |
-
