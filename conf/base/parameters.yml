@@ -1,0 +1,6 @@
+autogluon:
+  time_limit: 120         # czas na eksperyment (w sekundach)
+  presets: "medium_quality_faster_train"
+  problem_type: "binary"  # albo "multiclass"/"regression"
+  label: "target"
+  eval_metric: "roc_auc"  # lub "f1"/"rmse"
