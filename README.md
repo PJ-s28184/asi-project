@@ -74,7 +74,7 @@ Wszystko jest w `src/asi_project/pipelines/data_science/`. Model zapisuje się d
 Model używa MAE jako głównej metryki (bo rozkład czasów okrążeń jest bardzo skośny), plus RMSE, R² i MAPE dla porównania.
 
 ## W&B
-### Comparison of AutoGluon experiments
+### Porównanie eksperymentów AutoGluon
 | run_id       | name                  | MAE     | MAPE   | RMSE    | MSE       | R²       | Runtime(s) |
 |--------------|---------------------|---------|--------|---------|-----------|----------|------------|
 | smi3qwbd     | splendid-lake-1      | 0.0490  | 5.084  | 25.848  | 0.001546  | 0.9987   | 0          |
@@ -85,3 +85,5 @@ Model używa MAE jako głównej metryki (bo rozkład czasów okrążeń jest bar
 | nxjupbfk     | major-plasma-3       | 0.0554  | 6.451  | 41.618  | 0.001615  | 0.9979   | 0          |
 | gkb8bskl     | sandy-sun-4          | 0.0554  | 6.451  | 41.618  | 0.001615  | 0.9979   | 0          |
 | l286uhy6     | vibrant-armadillo-12 | 0.2207  | 12.392 | 153.554 | 0.075311  | 0.9924   | 0          |
+
+**W&B:** https://wandb.ai/s27669-polsko-japo-ska-akademia-technik-komputerowych/asi-project.
