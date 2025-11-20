@@ -17,32 +17,26 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
         return df
     
     df_clean = df.drop_duplicates()
-    
-    # Utwórz lap_time_seconds jeśli nie ma
+
     if 'lap_time_seconds' not in df_clean.columns and 'lap_time' in df_clean.columns:
         df_clean['lap_time_seconds'] = pd.to_timedelta(df_clean['lap_time'], errors='coerce').dt.total_seconds()
-    
-    # Utwórz pit_time_seconds i uzupełnij braki zerem
+
     if 'pit_time_seconds' not in df_clean.columns and 'pit_time' in df_clean.columns:
         df_clean['pit_time_seconds'] = pd.to_timedelta(df_clean['pit_time'], errors='coerce').dt.total_seconds()
     if 'pit_time_seconds' in df_clean.columns:
         df_clean['pit_time_seconds'] = df_clean['pit_time_seconds'].fillna(0)
-    
-    # Konwertuj season na int
+
     if 'season' in df_clean.columns and df_clean['season'].dtype == 'object':
         df_clean['season'] = pd.to_numeric(df_clean['season'], errors='coerce')
-    
-    # Usuń wiersze z brakami w target (lap_time_seconds) - nie można przewidywać bez celu
+
     if 'lap_time_seconds' in df_clean.columns:
         df_clean = df_clean[df_clean['lap_time_seconds'].notna()]
-    
-    # Usuń wiersze z brakami w kolumnach numerycznych (poza pit_time_seconds, które już ma zera)
+
     numeric_cols = df_clean.select_dtypes(include=['number']).columns.tolist()
     if 'pit_time_seconds' in numeric_cols:
         numeric_cols.remove('pit_time_seconds')  # wyklucz pit_time_seconds, bo już ma zera
     
     if numeric_cols:
-        # Usuń wiersze gdzie jakakolwiek kolumna numeryczna (poza pit) ma braki
         mask = df_clean[numeric_cols].notna().all(axis=1)
         df_clean = df_clean[mask]
     
@@ -62,9 +56,7 @@ def split(
         raise ValueError(f"target_column '{target_column}' not in dataframe")
 
     y = df[target_column]
-    # użyj tylko cech numerycznych (LinearRegression tego potrzebuje)
     X = df.drop(columns=[target_column]).select_dtypes(include=["number"])
-    # jeśli brak cech numerycznych, dodaj prostą stałą (bias), żeby się w ogóle dało trenować
     if X.shape[1] == 0:
         X = pd.DataFrame({"bias": 1.0}, index=df.index)
 
@@ -77,11 +69,9 @@ def split(
     if n < 1:
         raise ValueError("Brak danych po przygotowaniu. Sprawdź dane i cel.")
     if n == 1:
-        # minimum: użyj tej samej próbki jako train i test
         X_train, X_test = X.copy(), X.copy()
         y_train, y_test = y.copy(), y.copy()
     elif n == 2:
-        # minimalny split: 1 próbka train, 1 próbka test
         X_train, X_test = X.iloc[:1], X.iloc[1:]
         y_train, y_test = y.iloc[:1], y.iloc[1:]
     else:

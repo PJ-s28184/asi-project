@@ -1,0 +1,13 @@
+# Parametry do pipeline'u data_science (prosto: target/test_size/random_state)
+data_science:
+  target_column: lap_time_seconds
+  test_size: 0.2
+  random_state: 42
+
+# Parametry dla AutoGluon
+autogluon:
+  time_limit: 120              # czas na eksperyment (w sekundach)
+  presets: "medium_quality_faster_train"
+  problem_type: "regression"   # może byc "binary" lub "multiclass" w zależności od zadania
+  label: "lap_time_seconds"    # kolumna docelowa - zgodna z data_science.target_column
+  eval_metric: "rmse"          # metryka dla regresji, zmiana na "roc_auc" lub "f1" dla klasyfikacji

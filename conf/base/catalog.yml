@@ -1,7 +1,4 @@
 
-# Tutaj definiujemy zbiory danych (Kedro Data Catalog).
-# Krótko i na temat.
-
 raw_data:
   type: pandas.CSVDataset
   filepath: data/01_raw/2012-2022_FIA_WEC_FULL_LAP_DATA.csv

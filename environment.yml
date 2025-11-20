@@ -21,3 +21,4 @@ dependencies:
       - kedro-datasets[pandas]>=3.0
       - pyarrow>=14.0
       - pandera>=0.17
+      - autogluon==1.*

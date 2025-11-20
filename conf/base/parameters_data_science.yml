@@ -1,5 +1,0 @@
-# Parametry do pipeline'u data_science (prosto: target/test_size/random_state)
-data_science:
-  target_column: lap_time_seconds
-  test_size: 0.2
-  random_state: 42
