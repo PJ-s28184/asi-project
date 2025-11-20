@@ -1,0 +1,60 @@
+_wandb:
+    value:
+        cli_version: 0.23.0
+        e:
+            lqv2nszkokjh40or5yht520u9ja4tl0i:
+                args:
+                    - run
+                    - --pipeline=data_science
+                    - --from-nodes=split_node
+                cpu_count: 8
+                cpu_count_logical: 16
+                cudaVersion: "13.0"
+                disk:
+                    /:
+                        total: "1999496015872"
+                        used: "1883319902208"
+                email: s27669@pjwstk.edu.pl
+                executable: C:\Users\adaml\miniconda3\python.exe
+                git:
+                    commit: e4edfad38aef1ea663056241cd9a4eac45759979
+                    remote: https://github.com/PJ-s28184/asi-project.git
+                gpu: NVIDIA GeForce RTX 4070 SUPER
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ada
+                      cudaCores: 7168
+                      memoryTotal: "12878610432"
+                      name: NVIDIA GeForce RTX 4070 SUPER
+                      uuid: GPU-b51a9bd0-266e-d10f-1e4e-2b2ae8e9dfb1
+                host: bestia
+                memory:
+                    total: "33411727360"
+                os: Windows-11-10.0.26100-SP0
+                program: -m __main__
+                python: CPython 3.12.4
+                root: C:\Users\adaml\Videos\asi-project
+                startedAt: "2025-11-12T20:51:25.854181Z"
+                writerId: lqv2nszkokjh40or5yht520u9ja4tl0i
+        m: []
+        python_version: 3.12.4
+        t:
+            "1":
+                - 5
+                - 15
+                - 53
+            "2":
+                - 5
+                - 15
+                - 53
+            "3":
+                - 2
+            "4": 3.12.4
+            "5": 0.23.0
+            "8":
+                - 2
+                - 3
+            "10":
+                - 20
+            "12": 0.23.0
+            "13": windows-amd64

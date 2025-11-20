@@ -1,6 +1,14 @@
 from kedro.pipeline import Pipeline, node
 
-from .nodes import clean, evaluate, split, train_baseline
+from .nodes import (
+    clean,
+    evaluate,
+    split,
+    train_baseline,
+    train_autogluon,
+    evaluate_autogluon,
+    save_best_model,
+)
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -34,6 +42,24 @@ def create_pipeline(**kwargs) -> Pipeline:
                 inputs=["model_baseline", "X_test", "y_test"],
                 outputs="metrics_baseline",
                 name="evaluate_node",
+            ),
+            node(
+                func=train_autogluon,
+                inputs=["X_train", "y_train", "params:data_science.autogluon"],
+                outputs="ag_predictor",
+                name="train_autogluon_node",
+            ),
+            node(
+                func=evaluate_autogluon,
+                inputs=["ag_predictor", "X_test", "y_test"],
+                outputs="ag_metrics",
+                name="evaluate_autogluon_node",
+            ),
+            node(
+                func=save_best_model,
+                inputs="ag_predictor",
+                outputs="ag_model",
+                name="save_best_model_node",
             ),
         ]
     )

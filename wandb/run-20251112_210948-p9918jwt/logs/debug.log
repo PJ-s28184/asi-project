@@ -1,0 +1,5 @@
+2025-11-12 21:09:48,315 INFO    MainThread:34664 [wandb_init.py:setup_run_log_directory():713] Logging user logs to C:\Users\adaml\Videos\asi-project\wandb\run-20251112_210948-p9918jwt\logs\debug.log
+2025-11-12 21:09:48,315 INFO    MainThread:34664 [wandb_init.py:setup_run_log_directory():714] Logging internal logs to C:\Users\adaml\Videos\asi-project\wandb\run-20251112_210948-p9918jwt\logs\debug-internal.log
+2025-11-12 21:09:48,315 INFO    MainThread:34664 [wandb_init.py:init():840] calling init triggers
+2025-11-12 21:09:48,315 INFO    MainThread:34664 [wandb_init.py:init():845] wandb.init called with sweep_config: {}
+config: {'_wandb': {}}

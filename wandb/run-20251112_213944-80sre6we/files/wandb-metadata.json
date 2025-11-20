@@ -1,0 +1,43 @@
+{
+  "os": "Windows-11-10.0.26100-SP0",
+  "python": "CPython 3.12.4",
+  "startedAt": "2025-11-12T20:39:44.156073Z",
+  "args": [
+    "run",
+    "--pipeline=data_science",
+    "--from-nodes=split_node"
+  ],
+  "program": "-m __main__",
+  "git": {
+    "remote": "https://github.com/PJ-s28184/asi-project.git",
+    "commit": "e4edfad38aef1ea663056241cd9a4eac45759979"
+  },
+  "email": "s27669@pjwstk.edu.pl",
+  "root": "C:\\Users\\adaml\\Videos\\asi-project",
+  "host": "bestia",
+  "executable": "C:\\Users\\adaml\\miniconda3\\python.exe",
+  "cpu_count": 8,
+  "cpu_count_logical": 16,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "1999496015872",
+      "used": "1871872634880"
+    }
+  },
+  "memory": {
+    "total": "33411727360"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 4070 SUPER",
+      "memoryTotal": "12878610432",
+      "cudaCores": 7168,
+      "architecture": "Ada",
+      "uuid": "GPU-b51a9bd0-266e-d10f-1e4e-2b2ae8e9dfb1"
+    }
+  ],
+  "cudaVersion": "13.0",
+  "writerId": "b574zahi0q2r4qt8k98y1cxdswzeet2n"
+}
