@@ -1,4 +1,38 @@
-# Here you can define all your datasets by using simple YAML syntax.
-#
-# Documentation for this file format can be found in "The Data Catalog"
-# Link: https://docs.kedro.org/en/stable/data/data_catalog.html
+raw_data:
+  type: pandas.CSVDataset
+  filepath: data/01_raw/2012-2022_FIA_WEC_FULL_LAP_DATA.csv
+  load_args:
+    encoding: latin-1
+
+clean_data:
+  type: pandas.ParquetDataset
+  filepath: data/02_interim/wec_lap_data_cleaned.parquet
+
+X_train:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/X_train.parquet
+
+X_test:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/X_test.parquet
+
+y_train:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/y_train.parquet
+  save_args:
+    engine: auto
+
+y_test:
+  type: pandas.ParquetDataset
+  filepath: data/03_primary/y_test.parquet
+  save_args:
+    engine: auto
+
+model_baseline:
+  type: MemoryDataset
+model_file_path:
+  type: MemoryDataset
+
+metrics_baseline:
+  type: pandas.JSONDataset
+  filepath: data/08_reporting/metrics_baseline.json

@@ -15,16 +15,14 @@ dist/
 .env.*
 *.env
 
-# Data (nie ładujemy pełbych danych, tylko małe próbki danych)
-data/*
-!data/01_raw/
-!data/02_interim/
-!data/03_processed/
-data/**/.gitkeep
-data/**/README.md
-!data/01_raw/sample.csv
+# Data (nie wersjonujemy surowych, cleaned i modeli)
+data/01_raw/**
+data/02_interim/**
+data/06_models/**
+!data/**/.gitkeep
+!data/**/README.md
 
-# Jeśli ktoś pracuje na Macu
+# System
 .DS_Store
 Thumbs.db
 
@@ -35,3 +33,5 @@ Thumbs.db
 # Kedro
 conf/local/*
 !conf/local/.gitkeep
+data/02_interim/wec_lap_data_cleaned.csv
+data/02_interim/wec_lap_data_cleaned.csv

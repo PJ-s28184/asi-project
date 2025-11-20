@@ -1,5 +1,5 @@
-# This is a boilerplate parameters config generated for pipeline 'data_science'
-# using Kedro 1.0.0.
-#
-# Documentation for this file format can be found in "Parameters"
-# Link: https://docs.kedro.org/en/1.0.0/configuration/parameters.html
+# Parametry do pipeline'u data_science (prosto: target/test_size/random_state)
+data_science:
+  target_column: lap_time_seconds
+  test_size: 0.2
+  random_state: 42
