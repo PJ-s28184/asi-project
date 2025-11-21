@@ -354,3 +354,23 @@ def save_best_model(predictor: Any) -> str:
         pass
 
     return str(model_path)
+
+def select_production_model(best_alias: Any) -> str:
+    import wandb
+    api = wandb.Api()
+
+
+    if best_alias:
+        artifact = api.artifact(f"asi-project/ag_model:{best_alias}", type="model")
+    else:
+
+        artifacts = api.artifacts("asi-project/ag_model", type="model")
+        if not artifacts:
+            raise ValueError("Brak candidate w W&B")
+        artifact = artifacts[-1]
+
+    if "production" not in artifact.aliases:
+        artifact.aliases.append("production")
+        artifact.save()
+
+    return artifact.name
