@@ -75,15 +75,15 @@ Model używa MAE jako głównej metryki (bo rozkład czasów okrążeń jest bar
 
 ## W&B
 ### Porównanie eksperymentów AutoGluon
-| run_id       | name                  | MAE     | MAPE   | RMSE    | MSE       | R²       | Runtime(s) |
-|--------------|---------------------|---------|--------|---------|-----------|----------|------------|
-| smi3qwbd     | splendid-lake-1      | 0.0490  | 5.084  | 25.848  | 0.001546  | 0.9987   | 0          |
-| zy1lkdaj     | serene-valley-8      | 0.0490  | 5.084  | 25.848  | 0.001546  | 0.9987   | 0          |
-| dv6yfpyk     | divine-durian-2      | 0.0490  | 5.084  | 25.848  | 0.001546  | 0.9987   | 0          |
-| b4sqcr6w     | ruby-pond-7          | 0.0491  | 4.750  | 22.564  | 0.001986  | 0.9989   | 0          |
-| dr324mmx     | happy-sea-5          | 0.0501  | 5.174  | 26.772  | 0.001932  | 0.9986   | 651        |
-| nxjupbfk     | major-plasma-3       | 0.0554  | 6.451  | 41.618  | 0.001615  | 0.9979   | 0          |
-| gkb8bskl     | sandy-sun-4          | 0.0554  | 6.451  | 41.618  | 0.001615  | 0.9979   | 0          |
-| l286uhy6     | vibrant-armadillo-12 | 0.2207  | 12.392 | 153.554 | 0.075311  | 0.9924   | 0          |
+| # | Run ID     | Nazwa runa         | MAE      | MAPE     | RMSE      | MSE        | R²        | Runtime | Production Score |
+|---|------------|--------------------|----------|----------|-----------|------------|-----------|---------|-------------------|
+| 1 | zy1lkdaj   | ethereal-wave-5    | 0.049028 | 0.001546 | 5.084088  | 25.847949  | 0.998689  | 0       | **0.049028**      |
+| 2 | dv6yfpyk   | dreadful-rift-1    | 0.049028 | 0.001546 | 5.084088  | 25.847949  | 0.998689  | 0       | **0.049028**      |
+| 3 | b4sqcr6w   | rosy-blaze-4       | 0.049144 | 0.001986 | 4.750120  | 22.563638  | 0.998856  | 0       | 0.049144          |
+| 4 | l286uhy6   | scarlet-bee-9      | 0.220666 | 0.075311 | 12.391677 | 153.553654 | 0.992407  | 0       | 0.220666          |
+| 5 | q3x05q68   | magic-planet-12    | 0.370108 | 0.138567 | 11.821234 | 139.741563 | 0.993090  | 0       | 0.370108          |
+| 6 | 4r4v28kj   | prime-darkness-13  | 0.501203 | 0.189422 | 14.602788 | 213.241408 | 0.989456  | 0       | 0.501203          |
+
+<img width="871" height="560" alt="Image" src="https://github.com/user-attachments/assets/01f1c35d-3acd-45e6-aca1-aa8d9e11a13b" />
 
 **W&B:** https://wandb.ai/s27669-polsko-japo-ska-akademia-technik-komputerowych/asi-project.

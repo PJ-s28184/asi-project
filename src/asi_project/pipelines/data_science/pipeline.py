@@ -8,6 +8,7 @@ from .nodes import (
     train_autogluon,
     evaluate_autogluon,
     save_best_model,
+    select_production_model,
 )
 
 
@@ -60,6 +61,13 @@ def create_pipeline(**kwargs) -> Pipeline:
                 inputs="ag_predictor",
                 outputs="ag_model",
                 name="save_best_model_node",
+            ),
+            node(
+                func=select_production_model,
+                inputs="params:best_alias",
+                outputs="production_model_name",
+                name="select_production_model_node",
+
             ),
         ]
     )

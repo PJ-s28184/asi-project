@@ -4,7 +4,7 @@ Predict lap time (seconds) for WEC laps. Intended for exploratory modeling and f
 
 ## Data
 - Source: https://www.kaggle.com/datasets/tristenterracciano/fia-wec-lap-data-20122022
-- Size: 504000 rows
+- Size: 379375 rows
 - PII: none
 - License: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 IGO (https://creativecommons.org/licenses/by-nc-sa/3.0/igo/)
 ## Metrics (main + secondary, test split)
@@ -16,8 +16,8 @@ Predict lap time (seconds) for WEC laps. Intended for exploratory modeling and f
 - Model may be biased if features correlate with unobserved confounders.
 - Predictions may be invalid for extreme unseen configurations.
 ## Versioning
-- W&B run:https://wandb.ai/<team-name>/asi-project/runs/smi3qwbd
-- Model artifact: <team-name>/run-smi3qwbd-history:production (v3) <link>
+- W&B run:https://wandb.ai/s27669-polsko-japo-ska-akademia-technik-komputerowych/asi-project/veb48587
+- Model artifact: s27669-polsko-japo-ska-akademia-technik-komputerowych/ag_model:production (v3) 
 - Code: commit 4f7a2c9 <link>
 - Data: clean_data:v12 <link>
 - Env: Python 3.11, AutoGluon 1.4.0, sklearn 1.5
