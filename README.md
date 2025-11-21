@@ -84,4 +84,6 @@ Model używa MAE jako głównej metryki (bo rozkład czasów okrążeń jest bar
 | 5 | q3x05q68   | magic-planet-12    | 0.370108 | 0.138567 | 11.821234 | 139.741563 | 0.993090  | 0       | 0.370108          |
 | 6 | 4r4v28kj   | prime-darkness-13  | 0.501203 | 0.189422 | 14.602788 | 213.241408 | 0.989456  | 0       | 0.501203          |
 
+<img width="871" height="560" alt="Image" src="https://github.com/user-attachments/assets/01f1c35d-3acd-45e6-aca1-aa8d9e11a13b" />
+
 **W&B:** https://wandb.ai/s27669-polsko-japo-ska-akademia-technik-komputerowych/asi-project.
