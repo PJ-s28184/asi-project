@@ -197,8 +197,15 @@ def evaluate(
     if log_to_wandb:
         try:
             import wandb
+            from asi_project.settings import settings as app_settings
 
-            wandb.init(project="asi-project", reinit=True)
+            if app_settings.WANDB_API_KEY:
+                try:
+                    wandb.login(key=app_settings.WANDB_API_KEY, relogin=True)
+                except Exception:
+                    pass
+
+            wandb.init(project=(app_settings.WANDB_PROJECT or "asi-project"), reinit=True)
             wandb.log(metrics)
             if log_artifact_path:
                 try:
@@ -226,6 +233,7 @@ def train_autogluon(
 ) -> Any:
     import wandb
     from autogluon.tabular import TabularPredictor
+    from asi_project.settings import settings as app_settings
 
     if isinstance(y_train, pd.DataFrame):
         y_train = y_train.iloc[:, 0]
@@ -233,7 +241,13 @@ def train_autogluon(
     train_data = X_train.copy()
     train_data["target"] = y_train
 
-    project_name = params.get("wandb_project", "asi-project")
+    if app_settings.WANDB_API_KEY:
+        try:
+            wandb.login(key=app_settings.WANDB_API_KEY, relogin=True)
+        except Exception:
+            pass
+
+    project_name = params.get("wandb_project") or app_settings.WANDB_PROJECT or "asi-project"
     wandb.init(project=project_name, job_type="ag-train", config=params, reinit=True)
 
     time_limit = params.get("time_limit", 600)
@@ -275,6 +289,7 @@ def evaluate_autogluon(
     import wandb
     from sklearn.metrics import mean_absolute_error, r2_score, mean_squared_error
     import numpy as np
+    from asi_project.settings import settings as app_settings
 
     if isinstance(y_test, pd.DataFrame):
         y_test = y_test.iloc[:, 0]
@@ -296,7 +311,17 @@ def evaluate_autogluon(
     }
 
     try:
-        wandb.init(project="asi-project", job_type="ag-evaluate", reinit=True)
+        if app_settings.WANDB_API_KEY:
+            try:
+                wandb.login(key=app_settings.WANDB_API_KEY, relogin=True)
+            except Exception:
+                pass
+
+        wandb.init(
+            project=(app_settings.WANDB_PROJECT or "asi-project"),
+            job_type="ag-evaluate",
+            reinit=True,
+        )
         wandb.log(metrics)
 
         try:
@@ -330,6 +355,7 @@ def evaluate_autogluon(
 def save_best_model(predictor: Any) -> str:
     import wandb
     import pickle
+    from asi_project.settings import settings as app_settings
 
     model_path = Path("data/06_models/ag_production.pkl")
     model_path.parent.mkdir(parents=True, exist_ok=True)
@@ -338,7 +364,17 @@ def save_best_model(predictor: Any) -> str:
         pickle.dump(predictor, f)
 
     try:
-        wandb.init(project="asi-project", job_type="ag-model-save", reinit=True)
+        if app_settings.WANDB_API_KEY:
+            try:
+                wandb.login(key=app_settings.WANDB_API_KEY, relogin=True)
+            except Exception:
+                pass
+
+        wandb.init(
+            project=(app_settings.WANDB_PROJECT or "asi-project"),
+            job_type="ag-model-save",
+            reinit=True,
+        )
 
         art = wandb.Artifact(
             "ag_model",
@@ -358,13 +394,16 @@ def save_best_model(predictor: Any) -> str:
 def select_production_model(best_alias: Any) -> str:
     import wandb
     api = wandb.Api()
+    from asi_project.settings import settings as app_settings
+
+    project = app_settings.WANDB_PROJECT or "asi-project"
 
 
     if best_alias:
-        artifact = api.artifact(f"asi-project/ag_model:{best_alias}", type="model")
+        artifact = api.artifact(f"{project}/ag_model:{best_alias}", type="model")
     else:
 
-        artifacts = api.artifacts("asi-project/ag_model", type="model")
+        artifacts = api.artifacts(f"{project}/ag_model", type="model")
         if not artifacts:
             raise ValueError("Brak candidate w W&B")
         artifact = artifacts[-1]

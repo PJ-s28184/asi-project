@@ -1,8 +1,9 @@
 # src/api/model.py
-import os
 from typing import Any, Tuple
 
 import joblib
+
+from asi_project.settings import settings as app_settings
 
 # Konfiguracja w pliku (drugi poziom priorytetu po zmiennych środowiskowych).
 # W przypadku braku zmiennych środowiskowych można uzupełnić poniższe wartości.
@@ -21,12 +22,12 @@ _MODEL_VERSION: str = "local-dev"
 def _resolve_model_path() -> str:
     """
     Ustalanie ścieżki do pliku modelu według priorytetu:
-    1) zmienna środowiskowa MODEL_PATH
+    1) konfiguracja z env/.env (MODEL_PATH)
     2) wartość skonfigurowana w pliku (MODEL_PATH_CONFIG)
     3) wartość domyślna (MODEL_PATH_DEFAULT)
     """
     return (
-        os.getenv("MODEL_PATH")
+        app_settings.MODEL_PATH
         or MODEL_PATH_CONFIG
         or MODEL_PATH_DEFAULT
     )
@@ -35,12 +36,12 @@ def _resolve_model_path() -> str:
 def _resolve_model_version() -> str:
     """
     Ustalanie wersji modelu według priorytetu:
-    1) zmienna środowiskowa MODEL_VERSION
+    1) konfiguracja z env/.env (MODEL_VERSION)
     2) wartość skonfigurowana w pliku (MODEL_VERSION_CONFIG)
     3) wartość domyślna (MODEL_VERSION_DEFAULT)
     """
     return (
-        os.getenv("MODEL_VERSION")
+        app_settings.MODEL_VERSION
         or MODEL_VERSION_CONFIG
         or MODEL_VERSION_DEFAULT
     )
@@ -51,7 +52,9 @@ def _load_local_model() -> Tuple[Any, str]:
     Ładowanie modelu z lokalnego pliku przy użyciu ustalonej ścieżki.
     """
     model_path = _resolve_model_path()
-    if not os.path.exists(model_path):
+    from pathlib import Path
+
+    if not Path(model_path).exists():
         raise FileNotFoundError(f"Model file not found at: {model_path}")
 
     model = joblib.load(model_path)

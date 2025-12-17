@@ -14,6 +14,7 @@ dependencies = [
   "kedro~=1.0.0",
   "kedro-datasets[pandas]",
   "pandas",
+  "pydantic-settings>=2.0",
   "scikit-learn",
 ]
 

@@ -1,10 +1,11 @@
 # src/api/db.py
-import os
 import json
 import datetime as dt
 from typing import Union
 
 from sqlalchemy import create_engine, text
+
+from asi_project.settings import settings as app_settings
 
 # Konfiguracja w pliku (drugi poziom priorytetu po zmiennych środowiskowych).
 # W przypadku braku zmiennych środowiskowych można uzupełnić poniższą wartość.
@@ -17,15 +18,14 @@ DATABASE_URL_DEFAULT = "sqlite:///local.db"
 def _resolve_database_url() -> str:
     """
     Ustalanie URL bazy danych według priorytetu:
-    1) zmienna środowiskowa DATABASE_URL
+    1) konfiguracja z env/.env (DATABASE_URL)
     2) wartość skonfigurowana w pliku (DATABASE_URL_CONFIG)
     3) wartość domyślna (DATABASE_URL_DEFAULT)
     """
-    return (
-        os.getenv("DATABASE_URL")
-        or DATABASE_URL_CONFIG
-        or DATABASE_URL_DEFAULT
-    )
+    if "DATABASE_URL" in getattr(app_settings, "model_fields_set", set()):
+        return app_settings.DATABASE_URL
+
+    return DATABASE_URL_CONFIG or DATABASE_URL_DEFAULT
 
 
 # Utworzenie silnika bazy danych (singleton na poziomie modułu).
