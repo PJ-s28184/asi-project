@@ -87,3 +87,25 @@ Model używa MAE jako głównej metryki (bo rozkład czasów okrążeń jest bar
 <img width="871" height="560" alt="Image" src="https://github.com/user-attachments/assets/01f1c35d-3acd-45e6-aca1-aa8d9e11a13b" />
 
 **W&B:** https://wandb.ai/s27669-polsko-japo-ska-akademia-technik-komputerowych/asi-project.
+
+## Uruchomienie serwisu FastAPI
+
+```bash
+uvicorn src.api.main:app --reload --port 8000
+```
+## test health
+```
+curl http://127.0.0.1:8000/healthz
+```
+
+## predykcja
+```
+curl -X POST http://127.0.0.1:8000/predict \
+     -H "Content-Type: application/json" \
+     -d '{"lap_number": 12, "stint": 2, "fuel": 45.5, "driver_number": 7, "kph": 150, "top_speed": 300, "driver_name": "Smith", "race_class": "LMP1", "team": "TeamA", "manufacturer": "MakerX", "season": 2022, "circuit": "Spa", "round": 4, "vehicle": "CarA"}'
+```
+## podgląd zapisanych predykcji w bazie
+```
+sqlite3 local.db "SELECT * FROM predictions LIMIT 5;"
+```
+
