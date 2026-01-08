@@ -1,4 +1,5 @@
 # src/api/model.py
+import pickle
 from typing import Any, Tuple
 
 import joblib
@@ -57,7 +58,8 @@ def _load_local_model() -> Tuple[Any, str]:
     if not Path(model_path).exists():
         raise FileNotFoundError(f"Model file not found at: {model_path}")
 
-    model = joblib.load(model_path)
+    with open(model_path, "rb") as f:
+        model = pickle.load(f)
     version = _resolve_model_version()
     return model, version
 

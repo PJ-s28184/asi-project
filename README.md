@@ -101,8 +101,16 @@ curl http://127.0.0.1:8000/healthz
 ## predykcja
 ```
 curl -X POST http://127.0.0.1:8000/predict \
-     -H "Content-Type: application/json" \
-     -d '{"lap_number": 12, "stint": 2, "fuel": 45.5, "driver_number": 7, "kph": 150, "top_speed": 300, "driver_name": "Smith", "race_class": "LMP1", "team": "TeamA", "manufacturer": "MakerX", "season": 2022, "circuit": "Spa", "round": 4, "vehicle": "CarA"}'
+-H "Content-Type: application/json" \
+-d '{
+  "number":22,
+  "driver_number":7,
+  "lap_number":12,
+  "kph":150,
+  "top_speed":300,
+  "season":2022,
+  "round":4
+}'
 ```
 ## podgląd zapisanych predykcji w bazie
 ```
