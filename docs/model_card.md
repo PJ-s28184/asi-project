@@ -17,7 +17,7 @@ Predict lap time (seconds) for WEC laps. Intended for exploratory modeling and f
 - Predictions may be invalid for extreme unseen configurations.
 ## Versioning
 - W&B run:https://wandb.ai/s27669-polsko-japo-ska-akademia-technik-komputerowych/asi-project/veb48587
-- Model artifact: s27669-polsko-japo-ska-akademia-technik-komputerowych/ag_model:production (v3) 
+- Model artifact: s27669-polsko-japo-ska-akademia-technik-komputerowych/ag_model:v3
 - Code: commit 4f7a2c9 <link>
 - Data: clean_data:v12 <link>
 - Env: Python 3.11, AutoGluon 1.4.0, sklearn 1.5

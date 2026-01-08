@@ -26,6 +26,7 @@ data/06_models/**
 # AutoGluon models (duże pliki)
 AutogluonModels/
 *.pkl
+!data/06_models/ag_production.pkl
 
 # W&B
 wandb/

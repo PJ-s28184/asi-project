@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
 
+from .feature_adapter import adapt_features
 from .model import get_model
 from .db import save_prediction
 
@@ -14,23 +15,13 @@ class Features(BaseModel):
     Wejście do modelu - trzeba dolozyc pola - nie zrobie bo nie mam 06_models i conda nie dziala
     tak aby zgadzały się z tym, na czym model był trenowany.
     """
+    number: int
     driver_number: int
     lap_number: int
-    crossing_finish_line_in_pit: bool = False
-
     kph: float
     top_speed: float
-
-    driver_name: str
-    race_class: str
-    team: str
-    manufacturer: str
-
     season: int
-    circuit: str
     round: int
-
-    vehicle: str
 
 
 class Prediction(BaseModel):
@@ -72,7 +63,7 @@ def predict(payload: Features):
     model, model_version = get_model()
 
     # Konwersja danych wejściowych do formatu oczekiwanego przez model.
-    X = pd.DataFrame([payload.dict()])
+    X = adapt_features(payload.dict())
 
     # Wywołanie predykcji modelu.
     y_pred = model.predict(X)
