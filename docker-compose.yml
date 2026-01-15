@@ -20,6 +20,7 @@ services:
     environment:
       DATABASE_URL: postgresql://app:app@db:5432/appdb
       MODEL_PATH: /app/data/06_models/ag_production.pkl
+      PYTHONPATH: /app/src
     depends_on:
       db:
         condition: service_healthy

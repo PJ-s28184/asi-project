@@ -1,4 +1,6 @@
 # Parametry do pipeline'u data_science (prosto: target/test_size/random_state)
+best_alias: "RandomForestMSE_BAG_L1"
+
 data_science:
   target_column: lap_time_seconds
   test_size: 0.2

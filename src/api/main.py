@@ -1,4 +1,4 @@
-# src/api/main.py
+import logging
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -6,15 +6,14 @@ from .feature_adapter import adapt_features
 from .model import get_model
 from .db import save_prediction
 
+# Inicjalizacja logowania
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 app = FastAPI()
 
 
 class Features(BaseModel):
-    """
-    Wejście do modelu - trzeba dolozyc pola - nie zrobie bo nie mam 06_models i conda nie dziala
-    tak aby zgadzały się z tym, na czym model był trenowany.
-    """
-
     number: int
     driver_number: int
     lap_number: int
@@ -25,24 +24,18 @@ class Features(BaseModel):
 
 
 class Prediction(BaseModel):
-    """
-    Wyjście z modelu – lap_time_s (sekundy).
-    Pola:
-    - lap_time_s: przewidywany czas okrążenia w sekundach,
-    - model_version: identyfikator wersji modelu (np. z konfiguracji).
-    """
-
     lap_time_s: float
     model_version: str
 
 
 @app.on_event("startup")
 def _load_model_on_startup() -> None:
-    """
-    Ładowanie modelu przy starcie aplikacji.
-    Dzięki temu model nie jest wczytywany przy każdym żądaniu /predict.
-    """
-    get_model()
+    """Ładowanie modelu przy starcie aplikacji."""
+    try:
+        get_model()
+        logger.info("Model został pomyślnie załadowany podczas startupu.")
+    except Exception as e:
+        logger.error(f"Błąd podczas ładowania modelu na starcie: {e}")
 
 
 @app.get("/healthz")
@@ -52,35 +45,30 @@ def healthz():
 
 @app.post("/predict", response_model=Prediction)
 def predict(payload: Features):
-    """
-    Endpoint obsługujący predykcję czasu okrążenia.
-    Kroki:
-    1) Pobranie modelu oraz wersji modelu.
-    2) Konwersja danych wejściowych (Pydantic → dict → DataFrame).
-    3) Wywołanie metody predict modelu.
-    4) Zapis predykcji do bazy danych.
-    5) Zwrócenie przewidywanego lap_time_s wraz z wersją modelu.
-    """
+    """Endpoint obsługujący predykcję czasu okrążenia."""
     model, model_version = get_model()
 
-    # Konwersja danych wejściowych do formatu oczekiwanego przez model.
+    # Konwersja danych (Pydantic -> dict -> DataFrame przez adapter)
     X = adapt_features(payload.dict())
 
-    # Wywołanie predykcji modelu.
+    # Wywołanie predykcji modelu (model to teraz obiekt TabularPredictor)
     y_pred = model.predict(X)
 
-    # Obsługa typowych formatów zwracanych przez modele (Series / ndarray).
+    # Obsługa formatu zwracanego przez AutoGluon (zwykle Series/ndarray)
     if hasattr(y_pred, "iloc"):
         lap_time = float(y_pred.iloc[0])
     else:
         lap_time = float(y_pred[0])
 
-    # Zapis predykcji do bazy danych.
-    save_prediction(
-        payload=payload.dict(),
-        prediction=lap_time,
-        model_version=model_version,
-    )
+    # Zapis predykcji do bazy danych
+    try:
+        save_prediction(
+            payload=payload.dict(),
+            prediction=lap_time,
+            model_version=model_version,
+        )
+    except Exception as e:
+        logger.warning(f"Nie udało się zapisać predykcji do bazy: {e}")
 
     return {
         "lap_time_s": lap_time,
