@@ -117,3 +117,26 @@ curl -X POST http://127.0.0.1:8000/predict \
 sqlite3 local.db "SELECT * FROM predictions LIMIT 5;"
 ```
 
+## Docker quickstart
+
+```bash
+docker compose up --build
+```
+
+API:
+```bash
+curl http://localhost:8000/healthz
+curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" \
+     -d '{"number":22,"driver_number":7,"lap_number":12,"kph":150.0,"top_speed":300.0,"season":2022,"round":4}'
+```
+
+UI:
+```
+open http://localhost:8501
+```
+
+DB:
+```bash
+docker exec -it <container_db> psql -U app -d appdb -c "SELECT * FROM predictions LIMIT 5;"
+```
+
