@@ -67,7 +67,6 @@ def create_pipeline(**kwargs) -> Pipeline:
                 inputs="params:best_alias",
                 outputs="production_model_name",
                 name="select_production_model_node",
-
             ),
         ]
     )

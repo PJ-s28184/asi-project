@@ -36,4 +36,3 @@ services:
       - api
     ports:
       - "8501:8501"
-

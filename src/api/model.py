@@ -2,7 +2,6 @@
 import pickle
 from typing import Any, Tuple
 
-import joblib
 
 from asi_project.settings import settings as app_settings
 
@@ -27,11 +26,7 @@ def _resolve_model_path() -> str:
     2) wartość skonfigurowana w pliku (MODEL_PATH_CONFIG)
     3) wartość domyślna (MODEL_PATH_DEFAULT)
     """
-    return (
-        app_settings.MODEL_PATH
-        or MODEL_PATH_CONFIG
-        or MODEL_PATH_DEFAULT
-    )
+    return app_settings.MODEL_PATH or MODEL_PATH_CONFIG or MODEL_PATH_DEFAULT
 
 
 def _resolve_model_version() -> str:
@@ -41,11 +36,7 @@ def _resolve_model_version() -> str:
     2) wartość skonfigurowana w pliku (MODEL_VERSION_CONFIG)
     3) wartość domyślna (MODEL_VERSION_DEFAULT)
     """
-    return (
-        app_settings.MODEL_VERSION
-        or MODEL_VERSION_CONFIG
-        or MODEL_VERSION_DEFAULT
-    )
+    return app_settings.MODEL_VERSION or MODEL_VERSION_CONFIG or MODEL_VERSION_DEFAULT
 
 
 def _load_local_model() -> Tuple[Any, str]:

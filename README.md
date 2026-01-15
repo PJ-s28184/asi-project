@@ -139,4 +139,3 @@ DB:
 ```bash
 docker exec -it <container_db> psql -U app -d appdb -c "SELECT * FROM predictions LIMIT 5;"
 ```
-

@@ -4,6 +4,7 @@ from api.db import engine, text
 
 client = TestClient(app)
 
+
 def test_validation_error():
     r = client.post("/predict", json={"lap_number": "oops"})
     assert r.status_code == 422
@@ -30,7 +31,7 @@ def test_predict_saves_to_db():
     response = r.json()
     assert "lap_time_s" in response
     assert "model_version" in response
-    
+
     with engine.connect() as conn:
         result = conn.execute(
             text("SELECT * FROM predictions ORDER BY id DESC LIMIT 1")

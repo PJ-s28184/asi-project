@@ -34,4 +34,3 @@ if st.button("Predict"):
             st.error(f"Error: {r.text}")
     except requests.exceptions.RequestException as e:
         st.error(f"Request failed: {e}")
-

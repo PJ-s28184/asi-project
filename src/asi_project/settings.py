@@ -1,3 +1,5 @@
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
 CONFIG_LOADER_ARGS = {
     "base_env": "base",
     "default_run_env": "local",
@@ -6,8 +8,6 @@ CONFIG_LOADER_ARGS = {
     #     "parameters": ["parameters*", "parameters*/**", "**/parameters*"],
     # }
 }
-
-from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):

@@ -1,7 +1,6 @@
 # src/api/main.py
 from fastapi import FastAPI
 from pydantic import BaseModel
-import pandas as pd
 
 from .feature_adapter import adapt_features
 from .model import get_model
@@ -15,6 +14,7 @@ class Features(BaseModel):
     Wejście do modelu - trzeba dolozyc pola - nie zrobie bo nie mam 06_models i conda nie dziala
     tak aby zgadzały się z tym, na czym model był trenowany.
     """
+
     number: int
     driver_number: int
     lap_number: int
@@ -31,6 +31,7 @@ class Prediction(BaseModel):
     - lap_time_s: przewidywany czas okrążenia w sekundach,
     - model_version: identyfikator wersji modelu (np. z konfiguracji).
     """
+
     lap_time_s: float
     model_version: str
 
