@@ -93,6 +93,10 @@ Model używa MAE jako głównej metryki (bo rozkład czasów okrążeń jest bar
 ```bash
 uvicorn src.api.main:app --reload --port 8000
 ```
+Uwaga - czasem może być potrzebne uprzednie uruchomienie:
+```bash
+export PYTHONPATH=$PYTHONPATH:$(pwd)/src
+```
 ## test health
 ```
 curl http://127.0.0.1:8000/healthz
@@ -137,5 +141,5 @@ open http://localhost:8501
 
 DB:
 ```bash
-docker exec -it <container_db> psql -U app -d appdb -c "SELECT * FROM predictions LIMIT 5;"
+docker exec -it asi-project-db-1 psql -U app -d appdb -c "SELECT * FROM predictions LIMIT 5;"
 ```
